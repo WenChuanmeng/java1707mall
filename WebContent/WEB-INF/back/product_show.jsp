@@ -23,7 +23,7 @@
 	}
 	
 	/* 删除商品  */
-	function delStudent(id) {
+	function delProduct(id) {
 		var isDel = confirm("确定删除？");
 		if (isDel) {
 			location.href="${prc }/product/delProduct.action?id=" + id;
@@ -62,16 +62,16 @@
 			<!-- 左边导航栏开始  -->
 			<div class="col-md-2" >
 				<ul class="nav nav-pills nav-stacked">
-					<li role="presentation" class="active"><a href="#">商品管理</a></li>
-				    <li role="presentation"><a href="#">添加商品</a></li>
+					<li role="presentation" class="active"><a href="javascript:void(0)">商品管理</a></li>
+				    <li role="presentation"><a href="${prc }/product/toAddProduct.action">添加商品</a></li>
 				</ul>
 			</div>
 			<!-- 左边导航栏结束  -->
 			<!-- 右边栏开始  -->
 			<div class="col-md-10">
 				<ul class="nav nav-tabs">
-					<li role="presentation" class="active"><a href="#">商品管理</a></li>
-					<li role="presentation"><a href="${prc }/student/toAddStudent.action">添加商品</a></li>
+					<li role="presentation" class="active"><a href="javascript:void(0)">商品管理</a></li>
+				    <li role="presentation"><a href="${prc }/product/toAddProduct.action">添加商品</a></li>
 				</ul>
 				<!-- 查询条件 开始 -->
 				<form id="searchForm" action="${prc }/product/pageListByContidition.action" method="post" class="form-inline" style="float: left; margin-top: 10px;margin-bottom: 10px;" >

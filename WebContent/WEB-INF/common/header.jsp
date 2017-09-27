@@ -22,10 +22,10 @@
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="nav navbar-nav">
-		        <li class="active"><a href="${prc }/student/pageList.action">商品管理 <span class="sr-only">(current)</span></a></li>
-		        <li><a href="${prc }/banji/pageList.action">分类管理</a></li>
-		        <li><a href="${prc }/course/pageList.action">**管理</a></li>
-		        <li><a href="${prc }/eduAdmin/pageList.action">**管理</a></li>
+		        <li class="active"><a href="${prc }/product/pageList.action">商品管理 <span class="sr-only">(current)</span></a></li>
+		        <li><a href="${prc }/category/pageList.action">分类管理</a></li>
+		        <li><a href="#">**管理</a></li>
+		        <li><a href="#">**管理</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
 		        <li class="dropdown">
