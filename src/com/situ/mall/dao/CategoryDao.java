@@ -1,15 +1,16 @@
-package com.situ.mall.service;
+package com.situ.mall.dao;
 
 import java.util.List;
 
 import com.situ.mall.pojo.Category;
 
-public interface ICategoryService {
+public interface CategoryDao {
 
 	/**
 	 * 查询全部的父类分类
 	 * @return List<Category>
 	 */
+
 	List<Category> fingAllCategoryParent();
 
 	/**
@@ -19,5 +20,4 @@ public interface ICategoryService {
 	 */
 	List<Category> findAllCategory(Integer parentId);
 
-	
 }

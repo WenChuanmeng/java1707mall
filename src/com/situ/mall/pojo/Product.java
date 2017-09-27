@@ -18,6 +18,7 @@ public class Product implements Serializable {
 	private Integer status;
 	private Date createTime;
 	private Date updateTime;
+	private Category category;
 	
 	public Product() {
 		super();
@@ -25,6 +26,27 @@ public class Product implements Serializable {
 	}
 
 	
+
+	public Product(Integer id, Integer categoryId, String name, String subtitle, String mainImage, String subImages,
+			String detial, Double price, Integer stock, Integer status, Date createTime, Date updateTime,
+			Category category) {
+		super();
+		this.id = id;
+		this.categoryId = categoryId;
+		this.name = name;
+		this.subtitle = subtitle;
+		this.mainImage = mainImage;
+		this.subImages = subImages;
+		this.detial = detial;
+		this.price = price;
+		this.stock = stock;
+		this.status = status;
+		this.createTime = createTime;
+		this.updateTime = updateTime;
+		this.category = category;
+	}
+
+
 
 	public Product(Integer id, Integer categoryId, String name, String subtitle, String mainImage, String subImages,
 			String detial, Double price, Integer stock, Integer status, Date createTime, Date updateTime) {
@@ -220,6 +242,24 @@ public class Product implements Serializable {
 
 
 
+	/**
+	 * @return the category
+	 */
+	public Category getCategory() {
+		return category;
+	}
+
+
+
+	/**
+	 * @param category the category to set
+	 */
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -228,8 +268,12 @@ public class Product implements Serializable {
 		return "Product [id=" + id + ", categoryId=" + categoryId + ", name=" + name + ", subtitle=" + subtitle
 				+ ", mainImage=" + mainImage + ", subImages=" + subImages + ", detial=" + detial + ", price=" + price
 				+ ", stock=" + stock + ", status=" + status + ", createTime=" + createTime + ", updateTime="
-				+ updateTime + "]";
+				+ updateTime + ", category=" + category + "]";
 	}
+
+
+
+	
 
 	
 	

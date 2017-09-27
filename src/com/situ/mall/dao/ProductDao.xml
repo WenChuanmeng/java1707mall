@@ -4,19 +4,29 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.situ.mall.dao.ProductDao">
 
+	<sql id="productColums">
+		p.id AS 'pid',category_id,p.name AS 'pname',subtitle,main_image,sub_images,detail,price, 
+		stock,p.status,p.create_time AS 'pcreate_time',p.update_time AS 'pupdate_time', 
+		c.id AS 'cid',parent_id,c.name AS 'cname' 
+	</sql>
 	<!-- 商品表的Map -->
 	<resultMap type="Product" id="productMap">
-		<id column="id" property="id" />
+		<id column="pid" property="id" />
 		<result column="category_id" property="categoryId" />
-		<result column="name" property="name" />
+		<result column="pname" property="name" />
 		<result column="subtitle" property="subtitle" />
 		<result column="main_image" property="mainImage" />
 		<result column="sub_images" property="subImages" />
 		<result column="price" property="price" />
 		<result column="stock" property="stock"/>
 		<result column="status" property="status"/>
-		<result column="create_time" property="createTime" javaType="java.sql.Date" jdbcType="DATE" />
-		<result column="update_time" property="updateTime" javaType="java.sql.Date" jdbcType="DATE" />
+		<result column="pcreate_time" property="createTime" javaType="java.sql.Date" jdbcType="DATE" />
+		<result column="pupdate_time" property="updateTime" javaType="java.sql.Date" jdbcType="DATE" />
+		<association property="category" javaType="Category">
+			<id column="cid" property="id" />
+			<result column="parent_id" property="parentId" />
+			<result column="cname" property="name" />
+		</association>
 	</resultMap>
 
 	<!-- 查询一共有多少商品 -->
@@ -26,7 +36,7 @@
 	
 	<!-- 进行分页操作 -->
 	<select id="pageLsit" parameterType="int" resultMap="productMap">
-		SELECT * FROM product limit #{pageIndex},#{pageSize} ;
+		SELECT <include refid="productColums"/> FROM product AS p LEFT JOIN category AS c ON p.category_id=c.id limit #{pageIndex},#{pageSize} ;
 	</select>
 	
 	<!-- 根据条件查询数据的数量 -->
@@ -41,12 +51,62 @@
 	
 	<!-- 根据条件查询数据库的数据 -->
 	<select id="pageListByCondition" parameterType="FindByCondition" resultMap="productMap">
-		SELECT * FROM product 
+		SELECT <include refid="productColums"/> FROM product AS p LEFT JOIN category AS c ON p.category_id=c.id  
 		<where>
 			<if test="product!=null and product.name!=null  and !&quot;&quot;.equals(product.name.trim())">
-				and name like '%${product.name}%'
+				and p.name like '%${product.name}%'
 			</if>
 		</where>
-		group by id limit #{pageIndex},#{pageSize} ;
+		order by p.id limit #{pageIndex},#{pageSize} ;
 	</select>
+	
+	<!-- 添加商品 -->
+	<insert id="addProduct" parameterType="Product" >
+		insert into product 
+		(category_id,name,subtitle,price,stock,status,create_time) values 
+		(#{categoryId},#{name},#{subtitle},#{price},#{stock},#{status},#{createTime})
+	</insert>
+	
+	<!-- 根据id删除商品 -->
+	<delete id="delProduct" parameterType="int">
+		delete from product where id=#{id}
+	</delete>
+	
+	<!-- 更改商品的状态 -->
+	<update id="updateStatus" parameterType="Product">
+		UPDATE product SET status=#{status},update_time=#{updateTime} WHERE id=#{id}
+	</update>
+	
+	<!-- 根据id查找商品 -->
+	<select id="findById" parameterType="int" resultType="Product" >
+		select id,category_id,name,subtitle,price,stock,status 
+		from product where id=#{id}
+	</select>
+	
+	<!-- 更改商品 -->
+	<update id="updateProduct" parameterType="Product">
+		update product 
+		<set>
+			<if test="name!=null  and !&quot;&quot;.equals(name.trim())">
+				name=#{name},
+			</if>
+			<if test="subtitle!=null  and !&quot;&quot;.equals(subtitle.trim())">
+				subtitle=#{subtitle},
+			</if>
+			<if test="price!=null">
+				price=#{price},
+			</if>
+			<if test="stock!=null">
+				stock=#{stock},
+			</if>
+			<if test="status!=null">
+				status=#{status},
+			</if>
+			<if test="updateTime!=null">
+				update_time=#{updateTime},
+			</if>
+		</set> 
+		where id=#{id}
+	</update>
+	
 </mapper>

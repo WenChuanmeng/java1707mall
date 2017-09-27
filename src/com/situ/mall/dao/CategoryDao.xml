@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.situ.mall.dao.CategoryDao">
+
+	<!-- 查询全部父类 -->
+	<select id="fingAllCategoryParent" resultType="Category">
+		select * from category where parent_id=0;
+	</select>
+	
+	<!-- 根据父类查询全部子类 -->
+	<select id="findAllCategory" parameterType="int" resultType="Category" >
+		select * from category where parent_id=#{parentId}
+	</select>
+	
+	
+	
+</mapper>

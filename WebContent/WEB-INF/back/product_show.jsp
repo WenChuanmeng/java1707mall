@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>商品管理</title>
-
+<%@include file="../common/header.jsp" %>
 <style type="text/css">
 	.form-group{
 		width: 140px;
@@ -15,11 +15,14 @@
 	}
 </style>
 <script type="text/javascript">
+
+	/* 用于高级查询分页 */
 	function goPage(pageIndex) {
 		$("#pageIndex").val(pageIndex);
 		$("#searchForm").submit();
 	}
 	
+	/* 删除商品  */
 	function delStudent(id) {
 		var isDel = confirm("确定删除？");
 		if (isDel) {
@@ -27,6 +30,15 @@
 		}
 	}
 	
+	/* 更改商品状态  */
+	function updateStatus(id, status) {
+		var isUpdate = confirm("确定修改？");
+		if (isUpdate) {
+			location.href="${prc }/product/updateStatus.action?id=" + id + "&status=" + status;
+		}
+	}
+	
+	/* 批量删除  */
 	function deleteAll() {
 		var isDel = confirm("确定删除？");
 		if (isDel) {
@@ -35,6 +47,7 @@
 		}
 	}
 	
+	/* 全选CheckBox */
 	function selectAll() {
 		$("input[name=selectIds]").prop("checked", $("#selectAlls").is(":checked"))
 	}
@@ -43,7 +56,6 @@
 </head>
 <body>
 	<!-- head begin -->
-		<%@include file="../common/header.jsp" %>
 	<!-- head end -->
 	<div class="container" >
 		<div class="row">
@@ -96,16 +108,24 @@
 								<td>
 								<input type="checkbox" id="selectAlls" name="selectIds" value="${student.sid }" />
 								</td>
-								<td>${product.categoryId }</td>
-								<td>${product.name }</td>
+								<td>${product.category.name }</td>
+								<td width="100px" >${product.name }</td>
 								<td>${product. subtitle}</td>
 								<td>${product.price }</td>
 								<td>${product.stock }</td>
-								<td>${product.status }</td>
+								<td>
+									<c:if test="${product.status == 1 }">
+										在售
+									</c:if>
+									<c:if test="${product.status == 2 }">
+										下架
+									</c:if>
+								</td>
 								<td>${product.createTime }</td>
 								<td>${product.updateTime }</td>
-								<td><a href="javascript:delStudent(${student.sid });">删除</a></td>
-								<td><a href="${prc }/student/toUpdate.action?id=${student.sid}">修改</a></td>
+								<td><a href="javascript:void(0)" onclick="updateStatus(${product.id },${product.status });">修改状态</a></td>
+								<td><a href="javascript:void(0);" onclick="delProduct(${product.id })">删除</a></td>
+								<td><a href="${prc }/product/toUpdateProduct.action?id=${product.id}">修改</a></td>
 							</tr>
 						</c:forEach>
 					</table>

@@ -37,4 +37,40 @@ public interface ProductDao {
 	 */
 	List<Product> pageListByCondition(FindByCondition condition);
 
+	/**
+	 * 添加商品
+	 * @param product
+	 * @return int
+	 */
+	int addProduct(Product product);
+
+	/**
+	 * 根据id删除商品
+	 * @param id
+	 * @return boolean
+	 */
+	int delProduct(Integer id);
+
+	/**
+	 * 修改商品的状态
+	 * @param id
+	 * @param status
+	 * @return int
+	 */
+	int updateStatus(Product product);
+
+	/**
+	 * 根据id查找商品
+	 * @param id
+	 * @return Product
+	 */
+	Product findById(Integer id);
+
+	/**
+	 * 修改商品
+	 * @param product
+	 * @return boolean
+	 */
+	int updateProduct(Product product);
+
 }

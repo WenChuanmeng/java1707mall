@@ -51,4 +51,65 @@ public class ProductServiceImpl implements IProductService {
 		return pageBean;
 	}
 
+	@Override
+	public boolean addProduct(Product product) {
+		int result = productDao.addProduct(product);
+		
+		if (result > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean delProduct(Integer id) {
+		int reslut = productDao.delProduct(id);
+		
+		if ( reslut > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean updateStatus(Product product) {
+		
+		int status = product.getStatus();
+		
+		if (status == 1) {
+			status = 2;
+		} else if (status == 2) {
+			status = 1;
+		}
+		
+		product.setStatus(status);
+		int result  = productDao.updateStatus(product);
+		
+		if ( result > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public Product findById(Integer id) {
+		
+		return productDao.findById(id);
+	}
+
+	@Override
+	public boolean updateProduct(Product product) {
+		
+		int result = productDao.updateProduct(product);
+		
+		if ( result > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 }
