@@ -4,7 +4,8 @@
     <c:set var="prc" value="${pageContext.request.contextPath }" ></c:set>
 	<link rel="stylesheet" type="text/css" href="${prc }/resources/thrLib/bootstrap/css/bootstrap.css" />
 	<script type="text/javascript" src="${prc }/resources/thrLib/jquery/jquery-1.11.1.js"></script>
-
+	<script type="text/javascript" src="${prc }/resources/thrLib/jquery/jquery.form.js"></script>
+	 
 	<!-- head begin -->
 		<nav class="navbar navbar-default">
 		  <div class="container">

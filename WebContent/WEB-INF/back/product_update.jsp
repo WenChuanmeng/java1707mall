@@ -21,86 +21,15 @@
 		}
 	</style>
 <script type="text/javascript">
-
-	/* 上传图片  */
-	function uploadPic() {
-		var options={
-				url : "${prc}/student/uploadPic",
-				dataType : "json",
-				type : "post",
-				success : function(data) {
-					$("#imgId").attr("src", "/pic/" + data.fileName);
-					$("#imgSrc").val(data.fileName);
-				}
-		};
-		$("#form-add").ajaxSubmit(options);
-	}
+	var urlPRC = "${pageContext.request.contextPath}";
 	
-	/* 商品分类二级联动 开始 */
-	$(function() {
-        $.ajax({
-            url:"/Java1707Mall/category/categoryParent.action",
-            dataType:"json",
-            success:function(data,textStatus,ajax){
-               //append_template(data, "province");
-               var html = "<option value=''>-请选择-</option>";
-               for(var i=0;i<data.length;i++){
-                   html +="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
-               }
-                $("#categoryParentId").html(html);
-            }
-        });
-    });
-    
-    function selectCategories(obj) {
-        var parentId = $(obj).val();
-        //清空子类下拉框中的内容，出第一项外
-        $("#categoryChildId option:gt(0)").remove();
-        $.ajax({
-            url:"/Java1707Mall/category/category.action",
-            data:"parentId="+parentId,
-            dataType:"json",
-            success:function(data,textStatus,ajax){
-               //append_template(data, "city");
-               
-               var html = "<option value=''>-请选择-</option>";
-               for(var i=0;i<data.length;i++){
-                   html +="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
-               }
-               $("#categoryChildId").html(html);
-            }
-        });
-    }
-    
-    function selectId() {
-		var categoryParentVal = $("#categoryParentId").val();
-		var categoryVal = $("#categoryChildId").val();
-		
-		if (categoryVal != '') {
-			$("#categoryId").val(categoryVal);
-		} else {
-			$("#categoryId").val(categoryParentVal);
-		}
-	}
-    
-	
-   //封装其通用内容
-    function append_template(jsonData,target){
-        var length = jsonData.length;
-        var html = "<option value=''>-请选择-</option>";
-        for(var i=0;i<length;i++){
-            html +="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
-        }
-        $("#"+target).html(html);
-    }; 
-	/* 商品分类二级联动 结束 */
-
 	/* 回显  */
-	$(function() {
-		$("#status option[value='${product.status}']").prop("selected", true);
+    $(function() {
+		$("#status #op[value='${product.status}']").prop("selected", true);
 	});
 	
 </script>
+<script type="text/javascript" src="${prc }/resources/js/product-update-js.js"></script>
 </head>
 <body>
 	<!-- head begin -->
@@ -159,11 +88,17 @@
 				  <div class="form-group">
 					  <label for="exampleInputPassword1">状态</label>
 						<select class="form-control"  name="status" id="status">
-							<option value="" >请选择</option>
-							<option value="1" >在售</option>								
-							<option value="2" >下架</option>								
-							<option value="3" >删除</option>								
+							<option id="op" value="" >请选择</option>
+							<option id="op" value="1" >在售</option>								
+							<option id="op" value="2" >下架</option>								
+							<option id="op" value="3" >删除</option>								
 						</select>
+				 	</div>
+				 	<div class="form-group">
+						<label for="exampleInputName2">上传主图</label>
+				 		<img alt="loading" id="imgId" src="/pic/${product.mainImage }" width="50px" height="50px" >
+				 		<input type="hidden" name="mainImage" id="imgSrc" />
+				 		<input type="file" name="pictureFile" onchange="uploadPic();" />
 				 	</div>
 				  <button type="submit" class="btn btn-primary">Submit</button>
 				  </div>

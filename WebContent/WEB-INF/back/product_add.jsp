@@ -5,12 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>添加学生</title>
-	<script type="text/javascript" src="/Java1707Mall/resources/thrLib/jquery/jquery-1.11.1.js"></script>
+	<!-- head begin -->
+		<%@include file="../common/header.jsp" %>
+	<!-- head end -->
 	<style type="text/css">
 		#categoryParentId,#categoryChildId{
 			width: 20%;
 			float: left;
-			
 		}
 		#text{
 			float: left;
@@ -21,85 +22,11 @@
 		}
 	</style>
 <script type="text/javascript">
-	function uploadPic() {
-		var options={
-				url : "${prc}/student/uploadPic",
-				dataType : "json",
-				type : "post",
-				success : function(data) {
-					$("#imgId").attr("src", "/pic/" + data.fileName);
-					$("#imgSrc").val(data.fileName);
-				}
-		};
-		$("#form-add").ajaxSubmit(options);
-	}
-	
-	/* 商品分类二级联动 开始 */
-	$(function() {
-        $.ajax({
-            url:"/Java1707Mall/category/categoryParent.action",
-            dataType:"json",
-            success:function(data,textStatus,ajax){
-               //append_template(data, "province");
-               var html = "<option value=''>-请选择-</option>";
-               for(var i=0;i<data.length;i++){
-                   html +="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
-               }
-                $("#categoryParentId").html(html);
-            }
-        });
-    });
-    
-    function selectCategories(obj) {
-        var parentId = $(obj).val();
-        //清空子类下拉框中的内容，出第一项外
-        $("#categoryChildId option:gt(0)").remove();
-        $.ajax({
-            url:"/Java1707Mall/category/category.action",
-            data:"parentId="+parentId,
-            dataType:"json",
-            success:function(data,textStatus,ajax){
-               //append_template(data, "city");
-               
-               var html = "<option value=''>-请选择-</option>";
-               for(var i=0;i<data.length;i++){
-                   html +="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
-               }
-               $("#categoryChildId").html(html);
-            }
-        });
-    }
-    
-    function selectId() {
-		var categoryParentVal = $("#categoryParentId").val();
-		var categoryVal = $("#categoryChildId").val();
-		
-		if (categoryVal != '') {
-			$("#categoryId").val(categoryVal);
-		} else {
-			$("#categoryId").val(categoryParentVal);
-		}
-	}
-    
-	
-   //封装其通用内容
-    function append_template(jsonData,target){
-        var length = jsonData.length;
-        var html = "<option value=''>-请选择-</option>";
-        for(var i=0;i<length;i++){
-            html +="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
-        }
-        $("#"+target).html(html);
-    }; 
-	/* 商品分类二级联动 结束 */
-
-	
+	var urlPRC="${pageContext.request.contextPath}";	
 </script>
+<script type="text/javascript" src="${prc }/resources/js/product-add-js.js"></script>
 </head>
 <body>
-	<!-- head begin -->
-		<%@include file="../common/header.jsp" %>
-	<!-- head end -->
 	<div class="container" >
 		<div class="row">
 			<!-- 左边导航栏开始  -->
@@ -117,15 +44,15 @@
 					<li role="presentation" class="active"><a href="javascript:void(0)">添加商品</a></li>
 				</ul>
 				<!-- 添加商品 开始 -->
-				<form style="margin-top: 10px;" id="form-add" action="${prc }/product/addProduct.action" method="post"  >
+				<form style="margin-top: 10px;" id="form-add" action="${prc }/product/addProduct.action" method="post" enctype="multipart/form-data" >
 				<!-- 商品分类开始 -->
-				  <div class="form-group" onmouseout="selectId()" >
+				  <div class="form-group"  >
 						<label for="exampleInputEmail1" id="text">产品分类：&nbsp;&nbsp;&nbsp;</label>
 					    <select id="categoryParentId" onchange="selectCategories(this)" class="form-control select">
 					       <option value="">-请选择-</option>
 					    </select>
 						<label for="exampleInputEmail1" id="text" >&nbsp;&nbsp;&nbsp;产品类型：&nbsp;&nbsp;&nbsp;</label>
-					    <select id="categoryChildId" class="form-control select" >
+					    <select id="categoryChildId" onchange="selectId()" class="form-control select" >
 					       <option value="">-请选择-</option>
 					    </select>
 				  </div>
@@ -156,17 +83,17 @@
 							<option value="3" >删除</option>								
 						</select>
 				 	</div>
+				  <div class="form-group">
+						<label for="exampleInputName2">上传主图</label>
+				 		<img alt="loading" id="imgId" src="" width="100px" height="100px" >
+				 		<input type="hidden" name="mainImage" id="imgSrc" />
+				 		<input type="file" name="pictureFile" onchange="uploadPic();" />
+				 	</div>
 				  <button type="submit" class="btn btn-primary">Submit</button>
 				  </div>
-				  
 				</form>
 				<!-- 添加学生 结束 -->
 			</div>
 			<!-- 右边栏结束  -->
-		</div>
-	</div>
-	
-	
-	
 </body>
 </html>

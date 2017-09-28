@@ -63,8 +63,8 @@
 	<!-- 添加商品 -->
 	<insert id="addProduct" parameterType="Product" >
 		insert into product 
-		(category_id,name,subtitle,price,stock,status,create_time) values 
-		(#{categoryId},#{name},#{subtitle},#{price},#{stock},#{status},#{createTime})
+		(category_id,name,subtitle,main_image,price,stock,status,create_time) values 
+		(#{categoryId},#{name},#{subtitle},#{mainImage},#{price},#{stock},#{status},now())
 	</insert>
 	
 	<!-- 根据id删除商品 -->
@@ -73,13 +73,13 @@
 	</delete>
 	
 	<!-- 更改商品的状态 -->
-	<update id="updateStatus" parameterType="Product">
-		UPDATE product SET status=#{status},update_time=#{updateTime} WHERE id=#{id}
+	<update id="updateStatus" parameterType="int">
+		UPDATE product SET status=#{status},update_time=now() WHERE id=#{id}
 	</update>
 	
 	<!-- 根据id查找商品 -->
 	<select id="findById" parameterType="int" resultType="Product" >
-		select id,category_id,name,subtitle,price,stock,status 
+		select id,category_id as 'categoryId',name,subtitle,main_image as 'mainImage',price,stock,status 
 		from product where id=#{id}
 	</select>
 	
@@ -93,6 +93,9 @@
 			<if test="subtitle!=null  and !&quot;&quot;.equals(subtitle.trim())">
 				subtitle=#{subtitle},
 			</if>
+			<if test="mainImage!=null  and !&quot;&quot;.equals(mainImage.trim())">
+				main_image=#{mainImage},
+			</if>
 			<if test="price!=null">
 				price=#{price},
 			</if>
@@ -102,11 +105,11 @@
 			<if test="status!=null">
 				status=#{status},
 			</if>
-			<if test="updateTime!=null">
-				update_time=#{updateTime},
+			<if test="true">
+				update_time=now(),
 			</if>
 		</set> 
-		where id=#{id}
+		 where id=#{id}
 	</update>
 	
 </mapper>

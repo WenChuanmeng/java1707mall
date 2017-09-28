@@ -27,6 +27,14 @@ public class Product implements Serializable {
 
 	
 
+	public Product(Integer id, Integer status) {
+		super();
+		this.id = id;
+		this.status = status;
+	}
+
+
+
 	public Product(Integer id, Integer categoryId, String name, String subtitle, String mainImage, String subImages,
 			String detial, Double price, Integer stock, Integer status, Date createTime, Date updateTime,
 			Category category) {

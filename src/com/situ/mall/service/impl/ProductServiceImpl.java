@@ -1,6 +1,7 @@
 package com.situ.mall.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,28 +56,19 @@ public class ProductServiceImpl implements IProductService {
 	public boolean addProduct(Product product) {
 		int result = productDao.addProduct(product);
 		
-		if (result > 0) {
-			return true;
-		} else {
-			return false;
-		}
+		return result > 0 ? true : false;
 	}
 
 	@Override
 	public boolean delProduct(Integer id) {
 		int reslut = productDao.delProduct(id);
 		
-		if ( reslut > 0) {
-			return true;
-		} else {
-			return false;
-		}
+		return reslut > 0 ? true : false;
 	}
 
 	@Override
-	public boolean updateStatus(Product product) {
+	public boolean updateStatus(Integer id, Integer status) {
 		
-		int status = product.getStatus();
 		
 		if (status == 1) {
 			status = 2;
@@ -84,14 +76,9 @@ public class ProductServiceImpl implements IProductService {
 			status = 1;
 		}
 		
-		product.setStatus(status);
-		int result  = productDao.updateStatus(product);
+		int result  = productDao.updateStatus(id, status);
 		
-		if ( result > 0) {
-			return true;
-		} else {
-			return false;
-		}
+		return result > 0 ? true : false;
 	}
 
 	@Override
@@ -105,11 +92,37 @@ public class ProductServiceImpl implements IProductService {
 		
 		int result = productDao.updateProduct(product);
 		
-		if ( result > 0) {
-			return true;
-		} else {
-			return false;
+		return result > 0 ? true : false;
+	}
+
+	@Override
+	public boolean delAll(int[] selectIds) {
+		
+		int result = 0;
+		for (int i = 0; i < selectIds.length; i++) {
+			result = productDao.delProduct(selectIds[i]);
+			result += result;
 		}
+		return result > 0 ? true : false;
+	}
+
+	@Override
+	public boolean updateAllStatus(Map<Integer, Integer> map) {
+		
+		int result = 0;
+		for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+			int status = entry.getValue();
+			
+			if (status == 1) {
+				status = 2;
+			} else if (status == 2) {
+				status = 1;
+			}
+			
+			result = productDao.updateStatus(entry.getKey(), status);
+			result += result;
+		}
+		return result > 0 ? true : false;
 	}
 
 }

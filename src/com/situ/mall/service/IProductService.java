@@ -1,5 +1,7 @@
 package com.situ.mall.service;
 
+import java.util.Map;
+
 import com.situ.mall.pojo.Product;
 import com.situ.mall.vo.FindByCondition;
 import com.situ.mall.vo.PageBean;
@@ -41,7 +43,7 @@ public interface IProductService {
 	 * @param status
 	 * @return boolean
 	 */
-	public boolean updateStatus(Product product);
+	public boolean updateStatus(Integer id, Integer status);
 
 	/**
 	 * 根据id查找商品
@@ -56,6 +58,20 @@ public interface IProductService {
 	 * @return boolean
 	 */
 	public boolean updateProduct(Product product);
+
+	/**
+	 * 批量删除
+	 * @param selectIds
+	 * @return boolean
+	 */
+	public boolean delAll(int[] selectIds);
+
+	/**
+	 * 批量修改商品状态
+	 * @param map
+	 * @return boolean
+	 */
+	public boolean updateAllStatus(Map<Integer, Integer> map);
 	
 
 }

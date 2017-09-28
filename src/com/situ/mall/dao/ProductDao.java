@@ -57,7 +57,7 @@ public interface ProductDao {
 	 * @param status
 	 * @return int
 	 */
-	int updateStatus(Product product);
+	int updateStatus(@Param("id")Integer id, @Param("status")Integer status);
 
 	/**
 	 * 根据id查找商品
