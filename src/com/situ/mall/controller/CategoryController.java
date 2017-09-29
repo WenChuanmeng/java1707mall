@@ -38,7 +38,7 @@ public class CategoryController {
 	@RequestMapping("/category")
 	@ResponseBody
 	private List<Category> category(Integer parentId) {
-		
+		System.out.println(parentId);
 		List<Category> clist = categoryService.findAllCategory(parentId);
 		return clist;
 	}

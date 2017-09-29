@@ -78,9 +78,9 @@
 	</update>
 	
 	<!-- 根据id查找商品 -->
-	<select id="findById" parameterType="int" resultType="Product" >
-		select id,category_id as 'categoryId',name,subtitle,main_image as 'mainImage',price,stock,status 
-		from product where id=#{id}
+	<select id="findById" parameterType="int" resultMap="productMap" >
+		select <include refid="productColums"/> 
+		FROM product AS p LEFT JOIN category AS c ON p.category_id=c.id where p.id=#{id}
 	</select>
 	
 	<!-- 更改商品 -->

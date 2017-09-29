@@ -21,12 +21,14 @@
 		}
 	</style>
 <script type="text/javascript">
+
 	var urlPRC = "${pageContext.request.contextPath}";
 	
-	/* 回显  */
-    $(function() {
-		$("#status #op[value='${product.status}']").prop("selected", true);
-	});
+	var status = ${product.status};
+	
+	var parenId = ${product.category.parentId};
+	
+	var childId = ${product.categoryId};
 	
 </script>
 <script type="text/javascript" src="${prc }/resources/js/product-update-js.js"></script>
@@ -55,19 +57,19 @@
 				<!-- 添加商品 开始 -->
 				<form style="margin-top: 10px;" id="form-add" action="${prc }/product/updateProduct.action" method="post"  >
 				<input type="hidden" name="id" value="${product.id }" />
-				<!-- 商品分类开始
-				  <div class="form-group" onmouseout="selectId()" >
+				<!-- 商品分类开始 -->
+				  <div class="form-group"  >
 						<label for="exampleInputEmail1" id="text">产品分类：&nbsp;&nbsp;&nbsp;</label>
-					    <select id="categoryParentId" onchange="selectCategories(this)" class="form-control select">
-					       <option value="">-请选择-</option>
+					    <select id="categoryParentId" onchange="selectCategories(this)"   class="form-control select">
+					       <option id="op" value="">-请选择-</option>
 					    </select>
 						<label for="exampleInputEmail1" id="text" >&nbsp;&nbsp;&nbsp;产品类型：&nbsp;&nbsp;&nbsp;</label>
-					    <select id="categoryChildId" class="form-control select" >
-					       <option value="">-请选择-</option>
+					    <select id="categoryChildId" onchange="selectId()" class="form-control select" >
+					       <option id="op" value="">-请选择-</option>
 					    </select>
 				  </div>
-				  <input type="hidden" id="categoryId" name="categoryId" >
-				  商品分类结束 -->
+				  <input type="text" id="categoryId" name="categoryId" >
+				  <!-- 商品分类结束 -->
 				  
 				  <div class="form-group">
 					   <label for="exampleInputEmail1">商品名称</label>

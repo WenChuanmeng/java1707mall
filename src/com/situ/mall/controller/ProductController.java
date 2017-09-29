@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -20,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.situ.mall.pojo.Category;
 import com.situ.mall.pojo.Product;
+import com.situ.mall.service.ICategoryService;
 import com.situ.mall.service.IProductService;
 import com.situ.mall.vo.FindByCondition;
 import com.situ.mall.vo.PageBean;
@@ -31,6 +34,8 @@ public class ProductController {
 
 	@Autowired
 	private IProductService productService;
+	@Autowired
+	private ICategoryService categoryService;
 	
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
@@ -100,6 +105,8 @@ public class ProductController {
 		
 		Product product = productService.findById(id);
 		System.out.println(product);
+		List<Category> cpList = categoryService.fingAllCategoryParent();
+		model.addAttribute("cplist", cpList);
 		model.addAttribute("product", product);
 		return "product_update";
 	}
