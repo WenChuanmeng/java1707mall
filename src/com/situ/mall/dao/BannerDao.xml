@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.situ.mall.dao.BannerDao">
+
+	<sql id="bannerColums">
+		id,name,status,image_url,create_time,update_time
+	</sql>
+	
+	<!-- bannerMap -->
+	<resultMap type="Banner" id="bannerMap">
+		<id column="id" property="id"/>
+		<result column="name" property="name" />
+		<result column="status" property="status" />
+		<result column="image_url" property="imageUrl" />
+		<result column="create_time" property="createTime" javaType="java.sql.Date" jdbcType="DATE" />
+		<result column="update_time" property="updateTime" javaType="java.sql.Date" jdbcType="DATE" />
+	</resultMap>
+	
+	<!-- 查询有多少广告图片组 -->
+	<select id="totalSize" resultType="int">
+		select COUNT(*) from banner;
+	</select>
+	
+	<!-- 根据规定的页数查询 -->
+	<select id="pageList" parameterType="int" resultMap="bannerMap" >
+		select <include refid="bannerColums"/> 
+		from banner limit #{pageIndex},#{pageSize};
+	</select>
+	
+	<!-- 添加广告图片 -->
+	<insert id="addBanner" parameterType="Banner">
+		insert into banner (name,status,image_url,create_time,update_time) 
+		values (#{name},#{status},#{imageUrl},now(),now());
+	</insert>
+	
+</mapper>

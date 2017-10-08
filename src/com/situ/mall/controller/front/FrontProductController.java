@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.situ.mall.pojo.Product;
-import com.situ.mall.service.IProductService;
+import com.situ.mall.service.back.IProductService;
 
 @Controller
 @RequestMapping("product")

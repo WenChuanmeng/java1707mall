@@ -7,6 +7,9 @@
 		<title>靓淘网</title>
 		<%@ include file="common/head.jsp" %>
 		<link rel="stylesheet" href="${prc }/resources/front/css/index_style.css" />
+		<script type="text/javascript">
+			
+		</script>
 	</head>
 	
 	
@@ -92,110 +95,28 @@
 			<img class="banner"  src="${prc }/resources/front/img/tu8.png"/>
 			<div class="banner_center">
 				<div class="nav_left">
-					<span>
+					<!-- <span>
 						女装
 					</span>
 					<p>
 						<a href="">春上新</a>
 						<a href="">套装</a>
 						<a href="">休闲卫衣</a>
-					</p>
-					<span>
-						数码
-					</span>
-					<p>
-						<a href="">手机</a>
-						<a href="">笔记本</a>
-						<a href="">平板电脑</a>
-					</p>
-					<span>
-						内衣
-					</span>
-					<p>
-						<a href="">热销榜</a>
-						<a href="">内裤</a>
-						<a href="">睡衣套装</a>
-					</p>
-					<span>
-						图书
-					</span>
-					<p>
-						<a href="">童话书</a>
-						<a href="">哲理书</a>
-						<a href="">心灵鸡汤</a>
-					</p>
-					<span>
-						女鞋
-					</span>
-					<p>
-						<a href="">单鞋</a>
-						<a href="">运动鞋</a>
-						<a href="">小白鞋</a>
-					</p>
-					<span>
-						电器
-					</span>
-					<p>
-						<a href="">小家电</a>
-						<a href="">大家电</a>
-						<a href="">厨房电器</a>
-					</p>
-					<span>
-						包包
-					</span>
-					<p>
-						<a href="">单肩包</a>
-						<a href="">女包</a>
-						<a href="">男包</a>
-					</p>
-					<span>
-						运动
-					</span>
-					<p>
-						<a href="">运动衣</a>
-						<a href="">运动鞋</a>
-						<a href="">人气套装</a>
-					</p>
-					<span>
-						美妆
-					</span>
-					<p>
-						<a href="">护肤品</a>
-						<a href="">面膜</a>
-						<a href="">春季防晒</a>
-					</p>
-					<span>
-						配饰
-					</span>
-					<p>
-						<a href="">手表</a>
-						<a href="">墨镜</a>
-						<a href="">耳环新品</a>
-					</p>
-					<span>
-						家居
-					</span>
-					<p>
-						<a href="">新品</a>
-						<a href="">四季套</a>
-						<a href="">小家具</a>
-					</p>
-					<span>
-						母婴
-					</span>
-					<p>
-						<a href="">孕妇装</a>
-						<a href="">童装</a>
-						<a href="">初春新品</a>
-					</p>
-					<span>
-						食品
-					</span>
-					<p>
-						<a href="">小零食</a>
-						<a href="">肉食</a>
-						<a href="">休闲食品</a>
-					</p>
+					</p> -->
+					<c:forEach items="${parentList }" var="parent">
+						<span>
+							${parent.name }
+						</span>
+							<p>
+								<c:forEach items="${childList }" var="child" >
+									<c:if test="${child.parentId == parent.id }">
+										<a href="">${child.name }</a>
+									</c:if>
+								</c:forEach>
+							</p>
+						
+					</c:forEach>
+					
 				</div>
 				<div class="nav_right">
 					<div class="nav_top">

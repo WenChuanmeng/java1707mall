@@ -23,8 +23,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.situ.mall.pojo.Category;
 import com.situ.mall.pojo.Product;
-import com.situ.mall.service.ICategoryService;
-import com.situ.mall.service.IProductService;
+import com.situ.mall.service.back.ICategoryService;
+import com.situ.mall.service.back.IProductService;
 import com.situ.mall.vo.FindByCondition;
 import com.situ.mall.vo.PageBean;
 

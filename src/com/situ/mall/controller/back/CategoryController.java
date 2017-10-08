@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.situ.mall.pojo.Category;
-import com.situ.mall.service.ICategoryService;
+import com.situ.mall.service.back.ICategoryService;
 import com.situ.mall.vo.FindByCondition;
 import com.situ.mall.vo.PageBean;
 

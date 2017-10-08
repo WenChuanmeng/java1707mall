@@ -72,4 +72,10 @@ public interface CategoryDao {
 	 */
 	int updateStatus(@Param("id")Integer id, @Param("status")Integer status);
 
+	/**
+	 * 获得所有的分类
+	 * @return List<Category>
+	 */
+	List<Category> findAllChildCategory();
+
 }

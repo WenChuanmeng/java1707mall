@@ -75,4 +75,9 @@
 		update category set status=#{status},update_time=now() where id=#{id};
 	</update>
 	
+	<!-- 查找所有分类 -->
+	<select id="findAllChildCategory" resultMap="categoryMap">
+		select <include refid="categoryColums"/> from category;
+	</select>
+	
 </mapper>

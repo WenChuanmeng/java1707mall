@@ -8,53 +8,45 @@
 		<title>华为畅享6S</title>
 		<%@ include file="common/head.jsp" %>
 		<link rel="stylesheet" type="text/css" href="${prc }/resources/front/css/detail_style.css" />
+		<script type="text/javascript" src="${prc }/resources/front/js/jquery.jqzoom.js"></script>
+		<script type="text/javascript" src="${prc }/resources/front/js/base.js"></script>
 		<script type="text/javascript">
 			$(function() {
 				var subImagStr = '${product.subImages}';
 				var strs = new Array();
 				strs = subImagStr.split(",");
-				for ( var int = 0; int < strs.length; int++) {
-					
-					$('#smallShop').append("<li class='small_shop' ><img src='/pic/" + strs[int] + "'></li>");
+				var int = 0;
+				for (int = 0; int < strs.length; int++) {
+					$('#smallShop').append("<li class='small_shop' ><img src='/pic/" + strs[int] + "' onmousemove='preview(this);'></li>");
 				} 
 			});
+			
+			function sub() {
+				var num = $("#num").val();
+				if (num == 1) {
+					num = 1;
+				} else {
+					num--;
+				}
+				$("#num").val(num)
+			}
+			
+			function add() {
+				var num = $("#num").val();
+				if (num == "${product.stock}") {
+					num = "${product.stock}";
+					alert("只能购买" + num + "件");
+					return ;
+				} else {
+					num++;
+				}
+				$("#num").val(num);
+			}
 		</script>
 	</head>
 	<body>
 		<!--top-->
-		<div class="top_big">
-			<div class="top_center">
-				<div class="left">
-					欢迎来到靓淘网！
-				</div>
-				<div class="right">
-					<ul>
-						<li>
-							<a class="login" href="login.html" target="_blank">请登录</a>
-						</li>
-						<li>
-							<a href="register.html" target="_blank">快速注册</a>
-						</li>
-						<li>
-							<a class="collect" href="">我的收藏</a>
-						</li>
-						<li>
-							<a class="indent" href="">我的订单</a>
-						</li>
-						<li>
-							<a class="phone" href="">手机靓淘</a>
-						</li>
-						<li>
-							<a href="">我的积分</a>
-						</li>
-						<li>
-							<a href="">我的评价</a>
-						</li>
-					</ul>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-		</div>
+		
 		<!---------------logo-------------------->
 		<div class="logo_center">
 			<div class="left">
@@ -143,18 +135,20 @@
 		<div class="banner_center">
 			<div class="left">
 				<ul>
-					<li class="banner_center_left_top">
-						<img src="/pic/${product.mainImage }" />
+						<li  class="banner_center_left_top" id="preview">
+						<span class="jqzoom">
+							<img src="/pic/${product.mainImage }" />
+						</span>
 					</li>
+					
 					<li class="banner_center_left_center">
 						<ul id="smallShop">
-							<li class="left_right_nav">
+							<li class="left_right_nav prev">
 								<img src="${prc }/resources/front/img/left.png" />
 							</li>
-							
 						</ul>
 						<ul>
-							<li class="left_right_nav">
+							<li class="left_right_nav next">
 								<img src="${prc }/resources/front/img/right.png" />
 							</li>
 						</ul>
@@ -295,11 +289,11 @@
 						<span class="right_txt">
 							数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量&nbsp;&nbsp;&nbsp;&nbsp;
 						</span>
-						<input class="right_bottom_text" type="text" value="1" />
+						<input class="right_bottom_text" type="text" id="num" value="1" />
 						<ul class="right_bottom_btn">
 							<li>
-								<input class="right_bottom_substract" type="button" value="-" />
-								<input class="right_bottom_add" type="button" value="+" />
+								<input class="right_bottom_substract" type="button" onclick="sub()" value="-" />
+								<input class="right_bottom_add" type="button" onclick="add()" value="+" />
 							</li>
 						</ul>
 						<span>
