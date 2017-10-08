@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.situ.mall.pojo.Banner;
 import com.situ.mall.pojo.Category;
+import com.situ.mall.service.back.IBannerService;
 import com.situ.mall.service.back.ICategoryService;
 
 @Controller
@@ -15,6 +17,8 @@ public class IndexController {
 
 	@Autowired
 	private ICategoryService categoryService;
+	@Autowired
+	private IBannerService bannerService;
 	
 	@RequestMapping("index.shtml")
 	private String index(Integer id, Model model) {
@@ -23,6 +27,8 @@ public class IndexController {
 		model.addAttribute("parentList", parentList);
 		List<Category> childList = categoryService.findAllChildCategory();
 		model.addAttribute("childList", childList);
+		Banner banner = bannerService.findBanner();
+		model.addAttribute("banner", banner);
 		return "index";
 	}
 }

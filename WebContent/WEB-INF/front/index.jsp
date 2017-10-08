@@ -8,7 +8,15 @@
 		<%@ include file="common/head.jsp" %>
 		<link rel="stylesheet" href="${prc }/resources/front/css/index_style.css" />
 		<script type="text/javascript">
-			
+		$(function() {
+			var imageUrlStr = '${banner.imageUrl}';
+			var strs = new Array();
+			strs = imageUrlStr.split(",");
+			var int = 0;
+			for (int = 0; int < strs.length; int++) {
+				$('#banner_box').append("<img class='banner' src='/pic/" + strs[int] + "'>");
+			} 
+		});
 		</script>
 	</head>
 	
@@ -89,10 +97,11 @@
 		</div>
 		<!-----------------------4.广告区-------------------->
 		<div class="banner_box">
-			<img class="banner" src="${prc }/resources/front/img/tu9.png" />
+			<%-- <img class="banner" src="${prc }/resources/front/img/tu9.png" />
 			<img  class="banner" src="${prc }/resources/front/img/tu10.png"/>
 			<img class="banner"  src="${prc }/resources/front/img/tu11.png"/>
-			<img class="banner"  src="${prc }/resources/front/img/tu8.png"/>
+			<img class="banner"  src="${prc }/resources/front/img/tu8.png"/> --%>
+			<div id="banner_box" ></div>
 			<div class="banner_center">
 				<div class="nav_left">
 					<!-- <span>
@@ -639,7 +648,7 @@
 				$(".circle li").removeClass("current").eq(m).addClass("current");
 				$(".banner_box .banner").hide().eq(m).show();
 			}
-			t = setInterval(changeImg,1000);
+			t = setInterval(changeImg,2000);
 			$(".banner_box").mouseenter(
 				function(){
 				clearInterval(t);

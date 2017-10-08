@@ -29,5 +29,11 @@ public interface BannerDao {
 	 */
 	int addBanner(Banner banner);
 
+	/**
+	 * 查找状态为展示的广告图
+	 * @return Banner
+	 */
+	Banner findBanner();
+
 	
 }

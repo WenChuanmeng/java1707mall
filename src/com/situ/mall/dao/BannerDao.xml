@@ -35,4 +35,10 @@
 		values (#{name},#{status},#{imageUrl},now(),now());
 	</insert>
 	
+	<!-- 查找状态为展示的广告图 -->
+	<select id="findBanner" resultMap="bannerMap">
+		select <include refid="bannerColums"/> 
+		from banner where status=1;
+	</select>
+	
 </mapper>

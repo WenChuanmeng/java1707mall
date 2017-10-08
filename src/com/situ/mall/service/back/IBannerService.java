@@ -1,5 +1,7 @@
 package com.situ.mall.service.back;
 
+import java.util.List;
+
 import com.situ.mall.pojo.Banner;
 import com.situ.mall.vo.PageBean;
 
@@ -19,6 +21,12 @@ public interface IBannerService {
 	 * @return boolean
 	 */
 	boolean addBanner(Banner banner);
+
+	/**
+	 * 查找状态为展示的广告图
+	 * @return Banner
+	 */
+	Banner findBanner();
 
 	
 }

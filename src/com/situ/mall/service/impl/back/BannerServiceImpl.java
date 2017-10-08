@@ -38,4 +38,10 @@ public class BannerServiceImpl implements IBannerService {
 		return result > 0 ? true : false;
 	}
 
+	@Override
+	public Banner findBanner() {
+		
+		return bannerDao.findBanner();
+	}
+
 }
