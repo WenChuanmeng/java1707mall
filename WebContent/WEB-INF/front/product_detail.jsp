@@ -18,7 +18,7 @@
 				var int = 0;
 				for (int = 0; int < strs.length; int++) {
 					$('#smallShop').append("<li ><img src='/pic/" + strs[int] + "' onmousemove='preview(this);'></li>");
-				} 
+				}
 			});
 			
 			function sub() {
