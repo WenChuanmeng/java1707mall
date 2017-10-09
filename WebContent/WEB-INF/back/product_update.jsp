@@ -6,6 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>修改商品</title>
 	<%@include file="../common/header.jsp" %>
+	<link rel="stylesheet" type="text/css" href="${prc }/resources/thrLib/kindeditor/themes/default/default.css" />
+	<script  type="text/javascript" src="${prc }/resources/thrLib/kindeditor/kindeditor-all-min.js" /></script>
+	<script type="text/javascript" src="${prc }/resources/thrLib/kindeditor/lang/zh_CN.js"></script>
 	<style type="text/css">
 		#categoryParentId,#categoryChildId{
 			width: 20%;
@@ -29,6 +32,18 @@
 	var parenId = ${product.category.parentId};
 	
 	var childId = ${product.categoryId};
+	
+	var str = "${product.subImages}";
+	var strs = new Array();
+	strs = str.split(",");
+	
+	
+	
+	/* for ( var int = 0; int < strs.length; int++) {
+		$("#J_imageView").appendTo('<img src="' + strs[int] + '" width="50px" height="80px">');
+		
+	} */
+	
 	
 </script>
 <script type="text/javascript" src="${prc }/resources/js/product-update-js.js"></script>
@@ -68,7 +83,7 @@
 					       <option id="op" value="">-请选择-</option>
 					    </select>
 				  </div>
-				  <input type="text" id="categoryId" name="categoryId" >
+				  <input type="hidden" id="categoryId" name="categoryId" >
 				  <!-- 商品分类结束 -->
 				  
 				  <div class="form-group">
@@ -98,10 +113,22 @@
 				 	</div>
 				 	<div class="form-group">
 						<label for="exampleInputName2">上传主图</label>
-				 		<img alt="loading" id="imgId" src="/pic/${product.mainImage }" width="50px" height="50px" >
-				 		<input type="hidden" name="mainImage" id="imgSrc" />
+				 		<img alt="loading" id="imgId" src="${product.fullUrl }" width="50px" height="50px" >
+				 		<input type="hidden" name="mainImage" id="mainImage" />
 				 		<input type="file" name="pictureFile" onchange="uploadPic();" />
 				 	</div>
+				 	
+				 	<div class="form-group">
+					  	<label>商品图片</label>
+					  	 <a href="javascript:void(0)" class="picFileUpload" id="picFileUpload">上传图片</a>
+		                 <input type="hidden" name="subImages"  id="subImages"/>
+		                 <div id="J_imageView"></div>
+				     </div>
+				  	 <div class="form-group">
+					  	 <label>商品描述</label>
+					  	 <textarea style="width:900px;height:300px;visibility:hidden;"  name="detail">${product.detail }</textarea>
+				   	 </div>
+				 	
 				  <button type="submit" class="btn btn-primary">Submit</button>
 				  </div>
 				  

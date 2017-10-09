@@ -3,6 +3,8 @@ package com.situ.mall.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.situ.mall.constant.MallConstant;
+
 @SuppressWarnings("all")
 public class Product implements Serializable {
 
@@ -12,7 +14,7 @@ public class Product implements Serializable {
 	private String subtitle;
 	private String mainImage;
 	private String subImages;
-	private String detial;
+	private String detail;
 	private Double price;
 	private Integer stock;
 	private Integer status;
@@ -36,7 +38,7 @@ public class Product implements Serializable {
 
 
 	public Product(Integer id, Integer categoryId, String name, String subtitle, String mainImage, String subImages,
-			String detial, Double price, Integer stock, Integer status, Date createTime, Date updateTime,
+			String detail, Double price, Integer stock, Integer status, Date createTime, Date updateTime,
 			Category category) {
 		super();
 		this.id = id;
@@ -45,7 +47,7 @@ public class Product implements Serializable {
 		this.subtitle = subtitle;
 		this.mainImage = mainImage;
 		this.subImages = subImages;
-		this.detial = detial;
+		this.detail = detail;
 		this.price = price;
 		this.stock = stock;
 		this.status = status;
@@ -57,7 +59,7 @@ public class Product implements Serializable {
 
 
 	public Product(Integer id, Integer categoryId, String name, String subtitle, String mainImage, String subImages,
-			String detial, Double price, Integer stock, Integer status, Date createTime, Date updateTime) {
+			String detail, Double price, Integer stock, Integer status, Date createTime, Date updateTime) {
 		super();
 		this.id = id;
 		this.categoryId = categoryId;
@@ -65,7 +67,7 @@ public class Product implements Serializable {
 		this.subtitle = subtitle;
 		this.mainImage = mainImage;
 		this.subImages = subImages;
-		this.detial = detial;
+		this.detail = detail;
 		this.price = price;
 		this.stock = stock;
 		this.status = status;
@@ -73,7 +75,9 @@ public class Product implements Serializable {
 		this.updateTime = updateTime;
 	}
 
-
+	public String getFullUrl() {
+		return MallConstant.SERVER_ADDRES + mainImage;
+	}
 
 	/**
 	 * @return the id
@@ -165,17 +169,17 @@ public class Product implements Serializable {
 	}
 
 	/**
-	 * @return the detial
+	 * @return the detail
 	 */
-	public String getDetial() {
-		return detial;
+	public String getDetail() {
+		return detail;
 	}
 
 	/**
-	 * @param detial the detial to set
+	 * @param detail the detail to set
 	 */
-	public void setDetial(String detial) {
-		this.detial = detial;
+	public void setDetail(String detail) {
+		this.detail = detail;
 	}
 
 	/**
@@ -274,7 +278,7 @@ public class Product implements Serializable {
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", categoryId=" + categoryId + ", name=" + name + ", subtitle=" + subtitle
-				+ ", mainImage=" + mainImage + ", subImages=" + subImages + ", detial=" + detial + ", price=" + price
+				+ ", mainImage=" + mainImage + ", subImages=" + subImages + ", detail=" + detail + ", price=" + price
 				+ ", stock=" + stock + ", status=" + status + ", createTime=" + createTime + ", updateTime="
 				+ updateTime + ", category=" + category + "]";
 	}

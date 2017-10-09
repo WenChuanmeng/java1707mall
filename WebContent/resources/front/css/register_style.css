@@ -1,0 +1,199 @@
+body {
+	margin: 0;
+}
+
+* {
+	font-family: "微软雅黑";
+	font-size: 14px;
+	color: #333333;
+}
+
+ul,
+li {
+	padding: 0;
+	margin: 0;
+	outline: none;
+}
+
+li {
+	display: inline;
+}
+
+.clearfix {
+	clear: both;
+}
+
+img {
+	display: block;
+}
+
+input {
+	border: none;
+	padding: 0;
+	outline: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+
+/*------------top-----------------*/
+
+.top_center {
+	width: 1000px;
+	margin: auto;
+	padding-top: 22px;
+}
+
+.top_center .left {
+	float: left;
+}
+
+.top_center .right {
+	float: right;
+	margin-top: 24px;
+}
+
+.top_seven {
+	background-image: url(../img/7tianwuliyou.png);
+	background-repeat: no-repeat;
+	background-position: left;
+	padding-left: 20px;
+	margin-right: 16px;
+}
+
+.top_real {
+	background-image: url(../img/1000.png);
+	background-repeat: no-repeat;
+	background-position: left;
+	padding-left: 20px;
+	margin-left: 16px;
+	margin-right: 16px;
+}
+
+.top_back {
+	background-image: url(../img/money.png);
+	background-repeat: no-repeat;
+	background-position: left;
+	padding-left: 20px;
+	margin-left: 16px;
+}
+
+
+/*-----------------banner------------------------------*/
+
+.banner {
+	margin-top: 17px;
+	height: 523px;
+	position: relative;
+}
+
+.banner_img {
+	position: absolute;
+	left: 50%;
+	margin-left: -960px;
+}
+
+.banner_center {
+	width: 1080px;
+	height: 523px;
+	margin: auto;
+	position: absolute;
+	left: 50%;
+	margin-left: -500px;
+}
+
+
+/*------------------------------------------------*/
+
+.banner_center .register {
+	width: 302px;
+	height: 396px;
+	margin-top: 50px;
+	background: white;
+	position: absolute;
+	right: 80px;
+	padding: 18px 30px 18px 30px;
+}
+
+.register {
+	color: #333333;
+}
+.register_user {
+	height: 40px;
+	width: 290px;
+	border: 1px solid #BFBFBF;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	padding-left: 10px;
+}
+.register_note {
+	height: 40px;
+	width: 144px;
+	border: 1px solid #BFBFBF;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	padding-left: 10px;
+}
+.register_note_get{
+	width: 132px;
+	height: 41px;
+	background: #E5E5E5;
+	border: 1px solid #BFBFBF;
+	color: #666666;
+	margin-left: 9px;
+}
+.register_password {
+	height: 40px;
+	width:290px;
+	border: 1px solid #BFBFBF;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	padding-left: 10px;
+}
+.register_repassword {
+	height: 40px;
+	width: 290px;
+	border: 1px solid #BFBFBF;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	padding-left: 10px;
+}
+.register_finish {
+	height: 40px;
+	width: 300px;
+	background: #F41443;
+	margin-top: 10px;
+	border-radius: 5px 5px 5px 5px;
+	color: white;
+}
+
+/*---------------------*/
+
+.link {
+	margin-top: 60px;
+	height: 40px;
+	background: white;
+	text-align: center;
+	line-height: 40px;
+	border-bottom: 1px solid #BFBFBF;
+	border-top: 1px solid #BFBFBF;
+}
+
+/*.link a {
+	color: #;
+}*/
+
+.link li {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.copyright {
+	height: 70px;
+	background: white;
+	text-align: center;
+	color: #808080;
+	padding-top: 7px;
+}

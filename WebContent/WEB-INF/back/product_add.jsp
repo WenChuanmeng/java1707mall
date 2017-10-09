@@ -7,6 +7,9 @@
 <title>添加学生</title>
 	<!-- head begin -->
 		<%@include file="../common/header.jsp" %>
+		<link rel="stylesheet" type="text/css" href="${prc }/resources/thrLib/kindeditor/themes/default/default.css" />
+	<script  type="text/javascript" src="${prc }/resources/thrLib/kindeditor/kindeditor-all-min.js" /></script>
+	<script type="text/javascript" src="${prc }/resources/thrLib/kindeditor/lang/zh_CN.js"></script>
 	<!-- head end -->
 	<style type="text/css">
 		#categoryParentId,#categoryChildId{
@@ -22,7 +25,8 @@
 		}
 	</style>
 <script type="text/javascript">
-	var urlPRC="${pageContext.request.contextPath}";	
+	var urlPRC="${pageContext.request.contextPath}";
+	
 </script>
 <script type="text/javascript" src="${prc }/resources/js/product-add-js.js"></script>
 </head>
@@ -86,9 +90,22 @@
 				  <div class="form-group">
 						<label for="exampleInputName2">上传主图</label>
 				 		<img alt="loading" id="imgId" src="" width="100px" height="100px" >
-				 		<input type="hidden" name="mainImage" id="imgSrc" />
+				 		<input type="hidden" name="mainImage" id="mainImage" />
 				 		<input type="file" name="pictureFile" onchange="uploadPic();" />
 				 	</div>
+				 	
+				 	 <div class="form-group">
+					  	<label>商品图片</label>
+					  	 <a href="javascript:void(0)" class="picFileUpload" id="picFileUpload">上传图片</a>
+		                 <input type="hidden" name="subImages" id="subImages"/>
+		                 <div id="J_imageView"></div>
+				     </div>
+				  	 <div class="form-group">
+					  	 <label>商品描述</label>
+					  	 <textarea style="width:900px;height:300px;visibility:hidden;" name="detail"></textarea>
+				   	 </div>
+				 	
+				 	
 				  <button type="submit" class="btn btn-primary">Submit</button>
 				  </div>
 				</form>

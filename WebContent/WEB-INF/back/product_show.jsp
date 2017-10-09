@@ -104,7 +104,7 @@
 									</c:if>
 								</td>
 								<td>
-									<img alt="无图" id="imgId" src="/pic/${product.mainImage }" width="50px" height="50px" >
+									<img alt="无图" id="imgId" src="${product.fullUrl }" width="50px" height="50px" >
 								</td>
 								<td title="${product.createTime }">${product.createTime }</td>
 				 				<td title="${product.updateTime }">${product.updateTime }</td>

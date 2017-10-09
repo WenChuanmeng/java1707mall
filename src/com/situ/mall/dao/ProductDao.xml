@@ -17,6 +17,7 @@
 		<result column="subtitle" property="subtitle" />
 		<result column="main_image" property="mainImage" />
 		<result column="sub_images" property="subImages" />
+		<result column="detail" property="detail" />
 		<result column="price" property="price" />
 		<result column="stock" property="stock"/>
 		<result column="status" property="status"/>
@@ -63,8 +64,8 @@
 	<!-- 添加商品 -->
 	<insert id="addProduct" parameterType="Product" >
 		insert into product 
-		(category_id,name,subtitle,main_image,price,stock,status,create_time) values 
-		(#{categoryId},#{name},#{subtitle},#{mainImage},#{price},#{stock},#{status},now())
+		(category_id,name,subtitle,main_image,sub_images,detail,price,stock,status,create_time) values 
+		(#{categoryId},#{name},#{subtitle},#{mainImage},#{subImages},#{detail},#{price},#{stock},#{status},now())
 	</insert>
 	
 	<!-- 根据id删除商品 -->
@@ -87,6 +88,9 @@
 	<update id="updateProduct" parameterType="Product">
 		update product 
 		<set>
+		<if test="categoryId!=null">
+				category_id=#{categoryId},
+			</if>
 			<if test="name!=null  and !&quot;&quot;.equals(name.trim())">
 				name=#{name},
 			</if>
@@ -95,6 +99,12 @@
 			</if>
 			<if test="mainImage!=null  and !&quot;&quot;.equals(mainImage.trim())">
 				main_image=#{mainImage},
+			</if>
+			<if test="subImages!=null  and !&quot;&quot;.equals(subImages.trim())">
+				sub_images=#{subImages},
+			</if>
+			<if test="detail!=null  and !&quot;&quot;.equals(detail.trim())">
+				detail=#{detail},
 			</if>
 			<if test="price!=null">
 				price=#{price},
