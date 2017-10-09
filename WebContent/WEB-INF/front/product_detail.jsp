@@ -51,7 +51,9 @@
 		<!---------------logo-------------------->
 		<div class="logo_center">
 			<div class="left">
-				<img src="${prc }/resources/front/img/LOGO.png" />
+				<a href="${prc }/index.shtml">
+					<img src="${prc }/resources/front/img/LOGO.png" />
+				</a>
 			</div>
 			<div class="center">
 				<input class="logo_search" type="text" />

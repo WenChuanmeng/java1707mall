@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>添加学生</title>
+<title>添加商品</title>
 	<!-- head begin -->
 		<%@include file="../common/header.jsp" %>
 		<link rel="stylesheet" type="text/css" href="${prc }/resources/thrLib/kindeditor/themes/default/default.css" />
