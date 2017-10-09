@@ -28,5 +28,12 @@ public interface IBannerService {
 	 */
 	Banner findBanner();
 
+	/**
+	 * 修改展示的状态
+	 * @param id
+	 * @return boolean
+	 */
+	boolean updateStatus(Banner banner);
+
 	
 }

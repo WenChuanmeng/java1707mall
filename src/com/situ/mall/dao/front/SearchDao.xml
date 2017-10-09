@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.situ.mall.dao.front.SearchDao">
+
+	<sql id="productColums">
+		p.id AS 'pid',category_id,p.name AS 'pname',subtitle,main_image,sub_images,detail,price, 
+		stock,p.status,p.create_time AS 'pcreate_time',p.update_time AS 'pupdate_time', 
+		c.id AS 'cid',parent_id,c.name AS 'cname' 
+	</sql>
+	
+	<!-- 商品表的Map -->
+	<resultMap type="Product" id="productMap">
+		<id column="pid" property="id" />
+		<result column="category_id" property="categoryId" />
+		<result column="pname" property="name" />
+		<result column="subtitle" property="subtitle" />
+		<result column="main_image" property="mainImage" />
+		<result column="sub_images" property="subImages" />
+		<result column="detail" property="detail" />
+		<result column="price" property="price" />
+		<result column="stock" property="stock"/>
+		<result column="status" property="status"/>
+		<result column="pcreate_time" property="createTime" javaType="java.sql.Date" jdbcType="DATE" />
+		<result column="pupdate_time" property="updateTime" javaType="java.sql.Date" jdbcType="DATE" />
+		<association property="category" javaType="Category">
+			<id column="cid" property="id" />
+			<result column="parent_id" property="parentId" />
+			<result column="cname" property="name" />
+		</association>
+	</resultMap>
+
+	<!-- 根据商品的分类查询商品的数量 -->
+	<select id="totalSize" parameterType="int" resultType="int">
+		select count(*) from product where category_id=#{categoryId};
+	</select>
+	
+	<!-- 根据分类查询商品 -->
+	<select id="pageList" parameterType="int" resultMap="productMap">
+		select <include refid="productColums"/> 
+		FROM product AS p LEFT JOIN category AS c ON p.category_id=c.id where category_id=#{categoryId} limit #{pageIndex},#{pageSize};
+	</select>
+</mapper>

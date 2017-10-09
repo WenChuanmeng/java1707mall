@@ -26,7 +26,24 @@
 </style>
 	
 <script type="text/javascript">  
-       var urlPRC="${pageContext.request.contextPath}";  
+       var urlPRC="${pageContext.request.contextPath}";
+       
+       /* 修改广告图展示的状态  */
+       function updateStatus(id,status) {
+			var isUpdate = confirm("确定修改？");
+			if (isUpdate) {
+				location.href="${prc}/banner/updateStatus.action?id=" + id + "&status=" + status;
+			}
+		}
+       
+      /*  展示广告图  
+       $(function() {
+    	   
+    	   var list = "${pageBean.list}";
+    	   alert(list);
+    	   var imageUrlStr = "${banner.imageUrl}";
+    	   
+       }); */
 </script>  
 <%-- <script type="text/javascript" src="${prc }/resources/js/product-show-js.js"></script> --%>
 </head>
@@ -74,7 +91,7 @@
 							<td>id</td>
 							<td title="商品名称">名称</td>
 							<td>状态</td>
-							<td>主图</td>
+							<td>广告图</td>
 							<td>创建时间</td>
 							<td>更新时间</td>
 							<td>修改状态</td>
@@ -90,16 +107,18 @@
 								<td title="${banner.id }">${banner.id  }</td>
 								<td style="width: 100px;" title="${banner.name }" >${banner.name }</td>
 								<td>
-									<c:if test="${product.status == 1 }">
+									<c:if test="${banner.status == 1 }">
 										展示中
 									</c:if>
-									<c:if test="${product.status == 2 }">
+									<c:if test="${banner.status == 2 }">
 										未展示
 									</c:if>
 								</td>
-								<%-- <td>
-									<img alt="无图" id="imgId" src="${product.fullUrl }" width="50px" height="50px" >
-								</td> --%>
+								<td>
+									<div id="image" ></div>
+									${banner.imageUrl }
+									<%-- <img alt="无图" id="imgId" src="${product.fullUrl }" width="50px" height="50px" > --%>
+								</td>
 								<td title="${banner.createTime }">${banner.createTime }</td>
 				 				<td title="${banner.updateTime }">${banner.updateTime }</td>
 								<td><span class="glyphicon glyphicon-retweet" onclick="updateStatus(${banner.id },${banner.status });"></span></td>

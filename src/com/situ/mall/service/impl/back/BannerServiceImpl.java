@@ -44,4 +44,16 @@ public class BannerServiceImpl implements IBannerService {
 		return bannerDao.findBanner();
 	}
 
+	@Override
+	public boolean updateStatus(Banner banner) {
+		
+		if (banner.getStatus() == 1) {
+			banner.setStatus(2);
+		} else if (banner.getStatus() == 2) {
+			banner.setStatus(1);
+		}
+		int result = bannerDao.updateStatus(banner);
+		return result > 0 ? true : false;
+	}
+
 }

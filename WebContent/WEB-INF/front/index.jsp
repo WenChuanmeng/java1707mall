@@ -119,7 +119,7 @@
 							<p>
 								<c:forEach items="${childList }" var="child" >
 									<c:if test="${child.parentId == parent.id }">
-										<a href="">${child.name }</a>
+										<a href="${prc }/search/search.shtml?categoryId=${child.id}">${child.name }</a>
 									</c:if>
 								</c:forEach>
 							</p>

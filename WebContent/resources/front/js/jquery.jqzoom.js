@@ -37,7 +37,7 @@
 
             noalt= $(this).children("img").attr("alt");
 
-		    var bigimage = $(this).children("img").attr("jqimg");
+		    var bigimage = $(this).children("img").attr("src");
 
             $(this).children("img").attr("alt",'');
 
@@ -46,7 +46,7 @@
 		    $(this).after("<div class='zoomdiv'><img class='bigimg' src='"+bigimage+"'/></div>");
 
 
-		    $(this).append("<div class='jqZoomPup'>&nbsp;</div>");
+		    $(this).append("<div  class='jqZoomPup'>&nbsp;</div>");
 
 		    }
 

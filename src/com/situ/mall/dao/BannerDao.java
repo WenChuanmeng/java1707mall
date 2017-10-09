@@ -35,5 +35,12 @@ public interface BannerDao {
 	 */
 	Banner findBanner();
 
+	/**
+	 * 修改展示的状态
+	 * @param id
+	 * @return int
+	 */
+	int updateStatus(Banner banner);
+
 	
 }

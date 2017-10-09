@@ -46,4 +46,14 @@ public class BannerController {
 		bannerService.addBanner(banner);
 		return "redirect:pageList.action";
 	}
+	
+	//修改展示的状态
+	@RequestMapping("updateStatus")
+	private String updateStatus(Banner banner) {
+		
+		boolean result = bannerService.updateStatus(banner);
+		return "redirect:pageList.action";
+	}
+	
+	//跳转到修改界面
 }

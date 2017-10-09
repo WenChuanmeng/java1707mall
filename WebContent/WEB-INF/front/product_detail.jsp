@@ -5,11 +5,11 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>华为畅享6S</title>
+		<title>${product.name }</title>
 		<%@ include file="common/head.jsp" %>
 		<link rel="stylesheet" type="text/css" href="${prc }/resources/front/css/detail_style.css" />
+		<link rel="stylesheet" type="text/css" href="${prc }/resources/front/css/base-detail.css" />
 		<script type="text/javascript" src="${prc }/resources/front/js/jquery.jqzoom.js"></script>
-		<script type="text/javascript" src="${prc }/resources/front/js/base.js"></script>
 		<script type="text/javascript">
 			$(function() {
 				var subImagStr = '${product.subImages}';
@@ -17,7 +17,7 @@
 				strs = subImagStr.split(",");
 				var int = 0;
 				for (int = 0; int < strs.length; int++) {
-					$('#smallShop').append("<li class='small_shop' ><img src='/pic/" + strs[int] + "' onmousemove='preview(this);'></li>");
+					$('#smallShop').append("<li ><img src='/pic/" + strs[int] + "' onmousemove='preview(this);'></li>");
 				} 
 			});
 			
@@ -43,6 +43,7 @@
 				$("#num").val(num);
 			}
 		</script>
+		<script type="text/javascript" src="${prc }/resources/front/js/base.js"></script>
 	</head>
 	<body>
 		<!--top-->
@@ -133,26 +134,43 @@
 			</div>
 		</div>
 		<div class="banner_center">
-			<div class="left">
+			<div class="left ">
 				<ul>
-						<li  class="banner_center_left_top" id="preview">
+					<%-- <li  class="banner_center_left_top  spec-preview" id="preview">
 						<span class="jqzoom">
-							<img src="/pic/${product.mainImage }" />
+							<img width="350px" height="350px" src="/pic/${product.mainImage }" />
 						</span>
 					</li>
 					
 					<li class="banner_center_left_center">
+					<div class="items">
 						<ul id="smallShop">
 							<li class="left_right_nav prev">
 								<img src="${prc }/resources/front/img/left.png" />
 							</li>
 						</ul>
+					</div>
 						<ul>
 							<li class="left_right_nav next">
 								<img src="${prc }/resources/front/img/right.png" />
 							</li>
 						</ul>
-					</li>
+					</li> --%>
+					
+					<!--产品参数开始-->
+  <div>
+    <div id="preview" class="spec-preview"> <span class="jqzoom"><img width="350px" height="350px" jqimg="" src="/pic/${product.mainImage }" /></span> </div>
+    <!--缩图开始-->
+    <div class="spec-scroll"> <a class="prev">&lt;</a> <a class="next">&gt;</a>
+      <div class="items">
+        <ul id="smallShop">
+        </ul>
+      </div>
+    </div>
+    <!--缩图结束-->
+  </div>
+  <!--产品参数结束-->
+					
 					<li class="banner_center_left_bottom">
 						<img src="${prc }/resources/front/img/xin.png" />&nbsp;关注&nbsp;&nbsp;
 						<img src="${prc }/resources/front/img/enjoy.png" />&nbsp;分享&nbsp;&nbsp;
@@ -188,11 +206,8 @@
 								<span class="right_2_3_span">
 									促&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;销&nbsp;&nbsp;&nbsp;&nbsp;
 								</span>
-								<span>
+								<span style="color: red;font-size: 20px">
 									¥ ${product.price }&nbsp;&nbsp;
-								</span>
-								<span>
-									<del>¥ 1999</del>
 								</span>
 							</li>
 							<li class="right_2_4">

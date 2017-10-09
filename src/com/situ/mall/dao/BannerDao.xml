@@ -41,4 +41,8 @@
 		from banner where status=1;
 	</select>
 	
+	<!-- 修改商品展示的状态 -->
+	<update id="updateStatus" parameterType="banner">
+		update banner set status=#{status},update_time=now() where id=#{id}
+	</update>
 </mapper>
