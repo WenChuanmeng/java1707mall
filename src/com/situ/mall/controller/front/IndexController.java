@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.situ.mall.pojo.Banner;
 import com.situ.mall.pojo.Category;
-import com.situ.mall.service.back.IBannerService;
-import com.situ.mall.service.back.ICategoryService;
+import com.situ.mall.service.front.IBannerService;
+import com.situ.mall.service.front.ICategoryService;
+
 
 @Controller
 public class IndexController {

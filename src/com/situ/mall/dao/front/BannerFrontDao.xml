@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.situ.mall.dao.front.BannerFrontDao">
+
+	<sql id="bannerColums">
+		id,name,status,image_url,create_time,update_time
+	</sql>
+	
+	<!-- bannerMap -->
+	<resultMap type="Banner" id="bannerMap">
+		<id column="id" property="id"/>
+		<result column="name" property="name" />
+		<result column="status" property="status" />
+		<result column="image_url" property="imageUrl" />
+		<result column="create_time" property="createTime" javaType="java.sql.Date" jdbcType="DATE" />
+		<result column="update_time" property="updateTime" javaType="java.sql.Date" jdbcType="DATE" />
+	</resultMap>
+	
+	<!-- 查找状态为展示的广告图 -->
+	<select id="findBanner" resultMap="bannerMap">
+		select <include refid="bannerColums"/> 
+		from banner where status=1;
+	</select>
+	
+	
+</mapper>

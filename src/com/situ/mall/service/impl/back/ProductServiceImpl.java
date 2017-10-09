@@ -6,7 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.situ.mall.dao.ProductDao;
+import com.situ.mall.dao.back.ProductDao;
 import com.situ.mall.pojo.Product;
 import com.situ.mall.service.back.IProductService;
 import com.situ.mall.vo.FindByCondition;

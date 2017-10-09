@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.situ.mall.dao.BannerDao;
+import com.situ.mall.dao.back.BannerDao;
 import com.situ.mall.pojo.Banner;
 import com.situ.mall.service.back.IBannerService;
 import com.situ.mall.vo.PageBean;

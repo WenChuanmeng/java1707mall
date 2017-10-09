@@ -2,14 +2,13 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.situ.mall.dao.front.SearchDao">
+<mapper namespace="com.situ.mall.dao.front.ProductFrontDao">
 
 	<sql id="productColums">
 		p.id AS 'pid',category_id,p.name AS 'pname',subtitle,main_image,sub_images,detail,price, 
 		stock,p.status,p.create_time AS 'pcreate_time',p.update_time AS 'pupdate_time', 
 		c.id AS 'cid',parent_id,c.name AS 'cname' 
 	</sql>
-	
 	<!-- 商品表的Map -->
 	<resultMap type="Product" id="productMap">
 		<id column="pid" property="id" />
@@ -31,14 +30,13 @@
 		</association>
 	</resultMap>
 
-	<!-- 根据商品的分类查询商品的数量 -->
-	<select id="totalSize" parameterType="int" resultType="int">
-		select count(*) from product where category_id=#{categoryId};
+	
+	<!-- 根据id查找商品 -->
+	<select id="findById" parameterType="int" resultMap="productMap" >
+		select <include refid="productColums"/> 
+		FROM product AS p LEFT JOIN category AS c ON p.category_id=c.id where p.id=#{id} and p.status=1;
 	</select>
 	
-	<!-- 根据分类查询商品 -->
-	<select id="pageList" parameterType="int" resultMap="productMap">
-		select <include refid="productColums"/> 
-		FROM product AS p LEFT JOIN category AS c ON p.category_id=c.id where category_id=#{categoryId} and p.status=1 limit #{pageIndex},#{pageSize};
-	</select>
+	
+	
 </mapper>

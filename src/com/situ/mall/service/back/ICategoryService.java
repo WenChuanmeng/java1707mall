@@ -73,7 +73,7 @@ public interface ICategoryService {
 	boolean delAll(Integer[] selectIds);
 
 	/**
-	 * 获得所有的父类
+	 * 获得所有的分类
 	 * @return List<Category>
 	 */
 	List<Category> findAllChildCategory();

@@ -24,7 +24,7 @@ public class SearchController {
 		if (pageIndex == null) {
 			pageIndex = 1;
 		}
-		pageSize = 18;
+		pageSize = 15;
 		PageBean<Product> pageBean = searchService.findByCategory(categoryId, pageIndex, pageSize);
 		model.addAttribute("pageBean", pageBean);
 		return "search";

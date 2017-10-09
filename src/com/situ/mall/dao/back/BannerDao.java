@@ -1,4 +1,4 @@
-package com.situ.mall.dao;
+package com.situ.mall.dao.back;
 
 import java.util.List;
 

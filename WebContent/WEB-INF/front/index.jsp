@@ -13,15 +13,43 @@
 			var imageUrlStr = '${banner.imageUrl}';
 			var strs = new Array();
 			strs = imageUrlStr.split(",");
-			var int = 0;
-			for (int = 0; int < strs.length; int++) {
+			
+			for (var int = 0; int < strs.length; int++) {
 				$('#banner_box').append("<img class='banner' src='/pic/" + strs[int] + "'>");
 				
 			}
-			for (var int2 = 0; int2 < strs.length; int2++) {
+			for (var intLi = 1; intLi < strs.length; intLi++) {
 				$("#circle").append("<li class=''></li>");
 			}
+			var len = strs.length - 1;
+			var m = 0;
+			$(".banner_box .banner").hide().eq(0).show();
+			function changeImg(){
+				if(m<len){m=m+1}else{m=0}
+				$(".circle li").removeClass("current").eq(m).addClass("current");
+				$(".banner_box .banner").hide().eq(m).show();
+			}
+			t = setInterval(changeImg,2000);
+			$(".banner_box").mouseenter(
+				function(){
+				clearInterval(t);
+				}
+			).mouseleave(
+				function(){
+				t = setInterval(changeImg,1000);
+				}
+			)
+			$(".circle li").click(
+				function(){
+					m = $(this).index();
+					$(".circle li").removeClass("current").eq(m).addClass("current");
+					$(".banner_box .banner").hide().eq(m).show();
+				}
+			)
+			
 		});
+		
+		
 		</script>
 	</head>
 	
@@ -121,6 +149,7 @@
 				</div>
 			</div>
 			<ul class="circle" id="circle" >
+			<li class='current'></li>
 			</ul>
 			<div class="left_fix">
 				<a class="fix_a">
@@ -617,47 +646,7 @@
 			京公网安备 110101020011226|京ICP证111033号|食品流通许可证 SP1101051110165515（1-1）|营业执照
 		</div>
 		<script type="text/javascript">
-			var m = 0;
-			$(".banner_box .banner").hide().eq(0).show();
-			function changeImg(){
-				if(m<3){m=m+1}else{m=0}
-				$(".circle li").removeClass("current").eq(m).addClass("current");
-				$(".banner_box .banner").hide().eq(m).show();
-			}
-			t = setInterval(changeImg,2000);
-			$(".banner_box").mouseenter(
-				function(){
-				clearInterval(t);
-				}
-			).mouseleave(
-				function(){
-				t = setInterval(changeImg,1000);
-				}
-			)
-			$(".circle li").click(
-				function(){
-					m = $(this).index();
-					$(".circle li").removeClass("current").eq(m).addClass("current");
-					$(".banner_box .banner").hide().eq(m).show();
-				}
-			)
-/*			
-			$(".banner_box .banner").hide().eq(0).show();
-			$(".circle li").click(
-				function(){
-					var i = 0;
-					i = $(this).index();
-					$(".banner_box .banner").hide().eq(i).show();
-					
-				}
-			)
-			$(".circle li").click(
-				function(){
-					var n = 0;
-					n = $(this).index();
-					$(".circle li").removeClass("current").eq(n).addClass("current");
-				}
-			)*/
+			
 		</script>
 	</body>
 
