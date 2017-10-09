@@ -285,28 +285,20 @@
 			background: #daecf6;
 		}
 		
-		.nav_left span,.nav_left p {
-			float: left;
-			margin-left: 5px;
-			margin-top: 5px;
-			margin-right: 5px;
-			line-height: 28px;
-		}
+		
 		
 		.nav_left span {
 			font-size: 16px;
 			font-weight: 900;
-			padding-left: 15px;
+			
 			color: #333333;
 		}
 		
-		.nav_left .p {
-			padding-left: 10px;
-		}
+		
 		
 		.nav_left a {
 			color: #666;
-			float: left;
+			
 			margin-left: 5px;
 			margin-right: 5px;
 		}

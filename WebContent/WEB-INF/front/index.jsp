@@ -6,6 +6,7 @@
 		<meta charset="UTF-8">
 		<title>靓淘网</title>
 		<%@ include file="common/head.jsp" %>
+		<%@ include file="common/logo.jsp" %>
 		<link rel="stylesheet" href="${prc }/resources/front/css/index_style.css" />
 		<script type="text/javascript">
 		$(function() {
@@ -15,7 +16,11 @@
 			var int = 0;
 			for (int = 0; int < strs.length; int++) {
 				$('#banner_box').append("<img class='banner' src='/pic/" + strs[int] + "'>");
-			} 
+				
+			}
+			for (var int2 = 0; int2 < strs.length; int2++) {
+				$("#circle").append("<li class=''></li>");
+			}
 		});
 		</script>
 	</head>
@@ -25,33 +30,7 @@
 	<body>
 		<!-----------------------1.top-------------------->
 		
-		<!-----------------------2.logo-------------------->
-		<div class="logo_center">
-			<div class="left">
-				<img class="logo_img" src="${prc }/resources/front/img/LOGO.png" />
-			</div>
-			<div class="center">
-				<input class="btn1" type="text" value="洗面奶" />
-				<input class="btn2" type="button" value="搜索" />
-				<ul class="nav">
-					<li><a href="" style="color: pink;">保湿 | </a></li>
-					<li><a href="">面膜 | </a></li>
-					<li><a href="">洗面奶 | </a></li>
-					<li><a href="">补水 | </a></li>
-					<li><a href="">香水 | </a></li>
-					<li><a href="">眼霜 | </a></li>
-					<li><a href="">口红 | </a></li>
-					<li><a href="">护肤套装 | </a></li>
-					<li><a href="">BB霜 | </a></li>
-				</ul>
-			</div>
-			<div class="right">
-				<div class="car">
-					<a class="car_pic" href="cart.html" target="_blank">去购物车结算</a>
-				</div>
-				<div class="narrow"></div>
-			</div>
-		</div>
+		
 		<!-----------------------3.导航栏-------------------->
 		<div class="big_menu">
 			<div class="menu">
@@ -113,19 +92,20 @@
 						<a href="">休闲卫衣</a>
 					</p> -->
 					<c:forEach items="${parentList }" var="parent">
+					<div style="padding-top: 10px">
 						<span>
 							${parent.name }
 						</span>
-							<p>
+							
 								<c:forEach items="${childList }" var="child" >
 									<c:if test="${child.parentId == parent.id }">
 										<a href="${prc }/search/search.shtml?categoryId=${child.id}">${child.name }</a>
 									</c:if>
 								</c:forEach>
-							</p>
+							
 						
+					</div>
 					</c:forEach>
-					
 				</div>
 				<div class="nav_right">
 					<div class="nav_top">
@@ -140,11 +120,7 @@
 					</div>
 				</div>
 			</div>
-			<ul class="circle">
-				<li class="current"></li>
-				<li></li>
-				<li></li>
-				<li></li>
+			<ul class="circle" id="circle" >
 			</ul>
 			<div class="left_fix">
 				<a class="fix_a">
