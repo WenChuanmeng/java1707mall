@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.situ.mall.pojo.Category;
 import com.situ.mall.pojo.Product;
+import com.situ.mall.service.front.ICategoryService;
 import com.situ.mall.service.front.ISearchService;
 import com.situ.mall.vo.FindByCondition;
 import com.situ.mall.vo.PageBean;
@@ -16,6 +18,9 @@ import com.situ.mall.vo.PageBean;
 @RequestMapping("search")
 public class SearchController {
 
+	@Autowired
+	private ICategoryService categoryService;
+	
 	@Autowired
 	private ISearchService searchService;
 	
@@ -27,16 +32,28 @@ public class SearchController {
 		}
 		pageSize = 1;
 		PageBean<Product> pageBean = searchService.findByCategory(categoryId, pageIndex, pageSize);
+		List<Category> parentList = categoryService.fingAllCategoryParent();
+		List<Category> childList = categoryService.findAllChildCategory();
 		model.addAttribute("pageBean", pageBean);
 		model.addAttribute("name", name);
 		model.addAttribute("categoryId", categoryId);
+		model.addAttribute("parentList", parentList);
+		model.addAttribute("childList", childList);
 		return "search";
 	}
 	
-	@RequestMapping("findByCondition")
+	@RequestMapping("findByCondition.shtml")
 	private String findByCondition(FindByCondition condition, Model model) {
 		
+		if (condition.getPageIndex() == null) {
+			condition.setPageIndex(1);
+		}
+		condition.setPageSize(1);
 		
-		return "";
+		PageBean<Product> pageBean = searchService.findByCondition(condition);
+		model.addAttribute("pageBean", pageBean);
+		String name = condition.getProduct().getName();
+		model.addAttribute("name", name);
+		return "search";
 	}
 }

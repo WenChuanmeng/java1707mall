@@ -91,10 +91,10 @@
 			<div class="menu_center">
 				<ul class="menu_ul">
 					<li>
-						<a class="all_a" href="">全部商品分类</a>
+						<a class="all_a" href="${prc }/search/search.shtml">全部商品分类</a>
 					</li>
 					<li>
-						<a href="index.html" target="_blank">商城首页</a>
+						<a href="${prc }/index.shtml" target="_blank">商城首页</a>
 					</li>
 					<li>
 						<a href="">手机首页</a>

@@ -17,125 +17,112 @@
 	<link rel="stylesheet" href="${prc }/resources/front/css/search_style.css" />
 	<link rel="stylesheet" type="text/css" href="${prc }/resources/thrLib/bootstrap/css/bootstrap.css" />
 	<script type="text/javascript" src="${prc }/resources/thrLib/jquery/jquery-1.11.1.js"></script>
-	
+	<style type="text/css">
+		.proLi:HOVER{
+			position: relative;
+			top: -2px;
+			left: 2px;
+		}
+	</style>
 
 </head>
 <body>
-
-
-		<!-----------------------3.导航栏-------------------->
-		<div class="big_menu">
-			<div class="menu">
-				<ul class="menu_ul">
-					<li>
-						<a class="current" href="">
-							商城首页
-						</a>
-					</li>
-					<li>
-						<a href="">
-							美妆商城
-						</a>
-					</li>
-					<li>
-						<a href="">
-							服装运动
-						</a>
-					</li>
-					<li>
-						<a href="">
-							家电数码
-						</a>
-					</li>
-					<li>
-						<a href="">
-							家装家纺
-						</a>
-					</li>
-					<li>
-						<a href="">
-							淘遍美食
-						</a>
-					</li>
-					<li>
-						<a href="">
-							国际轻奢
-						</a>
-					</li>
-					<div class="clearfix"></div>
-				</ul>
-			</div>
-		</div>
-
-			<div id="proPlay" style="margin: 10px auto; width: 1100px;">
+	<!-- 分类 -->
+	<div style="margin: 10px auto; width: 1100px;">
+			<c:forEach items="${parentList }" var="parent">
 				<ul  >
-				<c:forEach items="${pageBean.list }" var="product">
-					<li style="width: 180px;height: 180px; margin: 10px;  float: left;">
-						<a  href="${prc }/product/detail.shtml?id=${product.id}">
-							<img width="150px" height="150px" src="${product.fullUrl }">
-							<p style="color: black; width:150px; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;" >${product.name }</p>
-							<p style="color: red;" >¥&nbsp;&nbsp;${product.price }</p>
-						</a>
-					</li>
+					<span style="font-size: 18px;font-weight: 900; color: black;">
+						${parent.name }&nbsp;&nbsp;:&nbsp;&nbsp;
+					</span>
+					<c:forEach items="${childList }" var="child">
+						<c:if test="${child.parentId==parent.id }">
+							<li>
+								<a style="text-decoration: none;" href="${prc }/search/search.shtml?name=${child.name}&categoryId=${child.id}">
+									<span style="margin: 0 5px; color: rgb(244,20,67);">${child.name }</span>
+								</a>	
+							</li>
+						</c:if>
+					</c:forEach>
+				</ul>
+			</c:forEach>
+		<div class="clearfix"></div>
+		</div>
+		<!-- 商品 -->
+		<div style="margin: 10px auto; width: 1100px;">
+			<ul  >
+			<c:forEach items="${pageBean.list }" var="product">
+				<li style="width: 180px;height: 180px; margin: 10px;  float: left; ">
+					<a  href="${prc }/product/detail.shtml?id=${product.id}">
+						<img class="proLi"  width="150px" height="150px" src="${product.fullUrl }">
+						<p style="color: black; width:150px; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;" >${product.name }</p>
+						<p style="color: red;" >¥&nbsp;&nbsp;${product.price }</p>
+					</a>
+				</li>
+			</c:forEach>
+		</ul>
+		<div class="clearfix"></div>
+		</div>
+		<!-- 分页开始 -->
+		<div style="width: 1100px; margin: 0 auto; " >
+			<nav aria-label="Page navigation">
+	 				<ul class="pagination">
+	 				<!-- 左箭头开始 -->
+			    <li>
+			        <c:if test="${pageBean.pageIndex==1 }">
+				      <a href="#" aria-label="Previous">
+				        <span aria-hidden="true">&laquo;</span>
+				      </a>
+			        </c:if>
+			        <c:if test="${pageBean.pageIndex!=1 }">
+				      <a href="${prc}/search/search.shtml?name=${name}&categoryId=${categoryId}&pageIndex=${pageBean.pageIndex-1}" aria-label="Previous">
+				        <span aria-hidden="true">&laquo;</span>
+				      </a>
+			        </c:if>
+			    </li>
+	 				<!-- 左箭头结束 -->
+	 				<!-- 中间数字开始 -->
+			    <c:forEach begin="1" end="${pageBean.totalPage }" var="pageIndex" >
+				<c:if test="${pageIndex==pageBean.pageIndex }">
+				    <li class="active"><a href="${prc}/search/search.shtml?name=${name}&categoryId=${categoryId}&pageIndex=${pageIndex}">${pageIndex }</a></li>
+				</c:if>
+				<c:if test="${pageIndex!=pageBean.pageIndex }">
+				    <li><a href="${prc}/search/search.shtml?name=${name}&categoryId=${categoryId}&pageIndex=${pageIndex}">${pageIndex }</a></li>
+				</c:if>
 				</c:forEach>
+					
+	 				<!-- 中间数字结束 -->
+	 				<!-- 右箭头开始 -->
+			    <li>
+			    	<c:if test="${pageBean.pageIndex==pageBean.totalPage }">
+				      <a href="#" aria-label="Next">
+				        <span aria-hidden="true">&raquo;</span>
+				      </a>
+			    	</c:if>
+			    	<c:if test="${pageBean.pageIndex!=pageBean.totalPage }">
+				      <a href="${prc}/search/search.shtml?name=${name}&categoryId=${categoryId}&pageIndex=${pageBean.pageIndex+1}" aria-label="Next">
+				        <span aria-hidden="true">&raquo;</span>
+				      </a>
+			    	</c:if>
+			    </li>
+	 				<!-- 右箭头结束 -->
+			  </ul>
+			</nav>
+		</div>
+		
+		<%-- <div style="width: 1100px; margin: 0 auto; " >
+			<ul style="float: right;margin-right: 10%;">
+				<li><a href="${prc }/search/search.shtml?categoryId=${categoryId }&pageIndex=${pageIndex-1 }"><span style="border: 1px solid blue;">&lt;&lt;</span></a></li>
+				
+				<c:forEach begin="1" end="${pageBean.totalPage }" var="pageIndex" >
+					<li><a href="${prc }/search/search.shtml?categoryId=${categoryId }&pageIndex=${pageIndex }"><span>${pageIndex }</span></a></li>
+				</c:forEach>
+				
+				
+				<li><a href=""><span style="border: 1px solid blue;">&gt;&gt;</span></a></li>
 			</ul>
 			<div class="clearfix"></div>
-			</div>
-			<!-- 分页开始 -->
-			<div style="width: 1100px; margin: 0 auto; " >
-				<nav aria-label="Page navigation">
-	  				<ul class="pagination">
-	  				<!-- 左箭头开始 -->
-				    <li>
-				        <c:if test="${pageBean.pageIndex==1 }">
-					      <a href="#" aria-label="Previous">
-					        <span aria-hidden="true">&laquo;</span>
-					      </a>
-				        </c:if>
-				        <c:if test="${pageBean.pageIndex!=1 }">
-					      <a href="${prc}/search/search.shtml?name=${name}&categoryId=${categoryId}&pageIndex=${pageBean.pageIndex-1}" aria-label="Previous">
-					        <span aria-hidden="true">&laquo;</span>
-					      </a>
-				        </c:if>
-				    </li>
-	  				<!-- 左箭头结束 -->
-	  				<!-- 中间数字开始 -->
-				    <c:forEach begin="1" end="${pageBean.totalPage }" var="pageIndex" >
-					    <li><a href="${prc}/search/search.shtml?name=${name}&categoryId=${categoryId}&pageIndex=${pageIndex}">${pageIndex }</a></li>
-					</c:forEach>
-	  				<!-- 中间数字结束 -->
-	  				<!-- 右箭头开始 -->
-				    <li>
-				    	<c:if test="${pageBean.pageIndex==pageBean.totalPage }">
-					      <a href="#" aria-label="Next">
-					        <span aria-hidden="true">&raquo;</span>
-					      </a>
-				    	</c:if>
-				    	<c:if test="${pageBean.pageIndex!=pageBean.totalPage }">
-					      <a href="${prc}/search/search.shtml?name=${name}&categoryId=${categoryId}&pageIndex=${pageBean.pageIndex+1}" aria-label="Next">
-					        <span aria-hidden="true">&raquo;</span>
-					      </a>
-				    	</c:if>
-				    </li>
-	  				<!-- 右箭头结束 -->
-				  </ul>
-				</nav>
-			</div>
-			
-			<%-- <div style="width: 1100px; margin: 0 auto; " >
-				<ul style="float: right;margin-right: 10%;">
-					<li><a href="${prc }/search/search.shtml?categoryId=${categoryId }&pageIndex=${pageIndex-1 }"><span style="border: 1px solid blue;">&lt;&lt;</span></a></li>
-					
-					<c:forEach begin="1" end="${pageBean.totalPage }" var="pageIndex" >
-						<li><a href="${prc }/search/search.shtml?categoryId=${categoryId }&pageIndex=${pageIndex }"><span>${pageIndex }</span></a></li>
-					</c:forEach>
-					
-					
-					<li><a href=""><span style="border: 1px solid blue;">&gt;&gt;</span></a></li>
-				</ul>
-				<div class="clearfix"></div>
-			</div> --%>
-			<!-- 分页结束 -->
+		</div> --%>
+		<!-- 分页结束 -->
 <div style="height:100px"></div>
 
 <div class="sp">

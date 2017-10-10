@@ -33,12 +33,46 @@
 
 	<!-- 根据商品的分类查询商品的数量 -->
 	<select id="totalSize" parameterType="int" resultType="int">
-		select count(*) from product where category_id=#{categoryId};
+		select count(*) from product where category_id=#{categoryId} and status=1;
 	</select>
 	
 	<!-- 根据分类查询商品 -->
 	<select id="pageList" parameterType="int" resultMap="productMap">
 		select <include refid="productColums"/> 
 		FROM product AS p LEFT JOIN category AS c ON p.category_id=c.id where category_id=#{categoryId} and p.status=1 limit #{pageIndex},#{pageSize};
+	</select>
+	
+	<!-- 根据条件查询商品的数量 -->
+	<select id="totalSizeByCondition" parameterType="FindByCondition" resultType="int">
+		select count(*) from product 
+		<where>
+			<if test="product!=null and product.name!=null  and !&quot;&quot;.equals(product.name.trim())">
+				and name like '%${product.name}%'
+			</if>
+			<if test="product!=null and product.categoryId=null">
+				and category_id=#{categoryId}
+			</if>
+			<if test="true">
+				and status=1 
+			</if>
+		</where>
+	</select>
+	
+	<!-- 根据搜索条件查找商品 -->
+	<select id="findByCondition" parameterType="FindByCondition" resultMap="productMap">
+		select <include refid="productColums"/> 
+		FROM product AS p LEFT JOIN category AS c ON p.category_id=c.id 
+		<where>
+			<if test="product!=null and product.name!=null  and !&quot;&quot;.equals(product.name.trim())">
+				and p.name like '%${product.name}%' 
+			</if>
+			<if test="product!=null and product.categoryId=null">
+				and category_id=#{categoryId} 
+			</if>
+			<if test="true">
+				and p.status=1 
+			</if>
+		</where> 
+		limit #{pageIndex},#{pageSize};
 	</select>
 </mapper>
