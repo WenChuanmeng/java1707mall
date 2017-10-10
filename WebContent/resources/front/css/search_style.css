@@ -143,6 +143,7 @@
 		}
 		/*设置搜索按钮的宽高，颜色，背景以及左浮动*/
 		
+		
 		.logo_center .btn2 {
 			width: 100px;
 			height: 34px;
@@ -203,6 +204,21 @@
 			margin-left: 5px;
 		}
 		/*----------------------------------menu------------------------------*/
+		.search_center .btn1 {
+			width: 100px;
+			height: 34px;
+			border: 2px solid #f41443;
+			float: left;
+		}
+		/*设置搜索按钮的宽高，颜色，背景以及左浮动*/
+		
+		.search_center .btn2 {
+			width: 50px;
+			height: 34px;
+			border: 2px solid #f41443;
+			background: #F41443;
+			float: left;
+		}
 		
 		.big_menu {
 			width: 100%;

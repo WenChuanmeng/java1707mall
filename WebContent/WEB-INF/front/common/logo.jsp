@@ -6,8 +6,10 @@
 				<a href="${prc }/index.shtml" ><img class="logo_img" src="${prc }/resources/front/img/LOGO.png" /></a>
 			</div>
 			<div class="center">
-				<form action="${prc }/search/findByCondition.shtml">
-					<input class="btn1" type="text" name="product.name" value="${product.name }" />
+				<form id="subForm" action="${prc }/search/findByCondition.shtml">
+					<input type="hidden" name="pageIndex" id="pageIndex" />
+					<input class="btn1" type="hidden" name="product.categoryId" value="${categoryId }" />
+					<input class="btn1" type="text" name="product.name" value="${name }" />
 					<input class="btn2" type="submit" value="搜索" />
 				</form>
 				<ul class="nav">

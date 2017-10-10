@@ -49,8 +49,8 @@
 			<if test="product!=null and product.name!=null  and !&quot;&quot;.equals(product.name.trim())">
 				and name like '%${product.name}%'
 			</if>
-			<if test="product!=null and product.categoryId=null">
-				and category_id=#{categoryId}
+			<if test="product!=null and product.categoryId!=null">
+				and category_id=#{product.categoryId}
 			</if>
 			<if test="true">
 				and status=1 
@@ -66,8 +66,8 @@
 			<if test="product!=null and product.name!=null  and !&quot;&quot;.equals(product.name.trim())">
 				and p.name like '%${product.name}%' 
 			</if>
-			<if test="product!=null and product.categoryId=null">
-				and category_id=#{categoryId} 
+			<if test="product!=null and product.categoryId!=null">
+				and category_id=#{product.categoryId} 
 			</if>
 			<if test="true">
 				and p.status=1 

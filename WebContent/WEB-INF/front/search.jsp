@@ -24,11 +24,24 @@
 			left: 2px;
 		}
 	</style>
+	<script type="text/javascript">
+		function goPage(pageIndex) {
+			$("#pageIndex").val(pageIndex);
+			$("#subForm").submit();
+		}
+	</script>
 
 </head>
 <body>
 	<!-- 分类 -->
 	<div style="margin: 10px auto; width: 1100px;">
+			<div class="search_center" style="float: right;">
+				<form id="subForm" action="${prc }/search/findByCondition.shtml" >
+					<input type="hidden" name="pageIndex" id="pageIndex" />
+					<input class="btn1" type="hidden" name="product.categoryId" value="${categoryId }" />
+					<input class="btn1" type="hidden" name="product.name" value="${name }" placeholder="商品名称"/>
+				</form>
+			</div>
 			<c:forEach items="${parentList }" var="parent">
 				<ul  >
 					<span style="font-size: 18px;font-weight: 900; color: black;">
@@ -69,12 +82,12 @@
 	 				<!-- 左箭头开始 -->
 			    <li>
 			        <c:if test="${pageBean.pageIndex==1 }">
-				      <a href="#" aria-label="Previous">
+				      <a href="javascript:void(0)" aria-label="Previous">
 				        <span aria-hidden="true">&laquo;</span>
 				      </a>
 			        </c:if>
 			        <c:if test="${pageBean.pageIndex!=1 }">
-				      <a href="${prc}/search/search.shtml?name=${name}&categoryId=${categoryId}&pageIndex=${pageBean.pageIndex-1}" aria-label="Previous">
+				      <a href="javascript:goPage('${pageBean.pageIndex-1 }')" aria-label="Previous">
 				        <span aria-hidden="true">&laquo;</span>
 				      </a>
 			        </c:if>
@@ -83,10 +96,10 @@
 	 				<!-- 中间数字开始 -->
 			    <c:forEach begin="1" end="${pageBean.totalPage }" var="pageIndex" >
 				<c:if test="${pageIndex==pageBean.pageIndex }">
-				    <li class="active"><a href="${prc}/search/search.shtml?name=${name}&categoryId=${categoryId}&pageIndex=${pageIndex}">${pageIndex }</a></li>
+				    <li class="active"><a href="javascript:goPage('${pageIndex }')">${pageIndex }</a></li>
 				</c:if>
 				<c:if test="${pageIndex!=pageBean.pageIndex }">
-				    <li><a href="${prc}/search/search.shtml?name=${name}&categoryId=${categoryId}&pageIndex=${pageIndex}">${pageIndex }</a></li>
+				    <li><a href="javascript:goPage('${pageIndex }')">${pageIndex }</a></li>
 				</c:if>
 				</c:forEach>
 					
@@ -94,12 +107,12 @@
 	 				<!-- 右箭头开始 -->
 			    <li>
 			    	<c:if test="${pageBean.pageIndex==pageBean.totalPage }">
-				      <a href="#" aria-label="Next">
+				      <a href="javascript:void(0)" aria-label="Next">
 				        <span aria-hidden="true">&raquo;</span>
 				      </a>
 			    	</c:if>
 			    	<c:if test="${pageBean.pageIndex!=pageBean.totalPage }">
-				      <a href="${prc}/search/search.shtml?name=${name}&categoryId=${categoryId}&pageIndex=${pageBean.pageIndex+1}" aria-label="Next">
+				      <a href="javascript:goPage('${pageBean.pageIndex + 1 }')" aria-label="Next">
 				        <span aria-hidden="true">&raquo;</span>
 				      </a>
 			    	</c:if>

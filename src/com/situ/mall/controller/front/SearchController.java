@@ -48,10 +48,16 @@ public class SearchController {
 		if (condition.getPageIndex() == null) {
 			condition.setPageIndex(1);
 		}
-		condition.setPageSize(1);
 		
+		condition.setPageSize(1);
 		PageBean<Product> pageBean = searchService.findByCondition(condition);
 		model.addAttribute("pageBean", pageBean);
+		List<Category> parentList = categoryService.fingAllCategoryParent();
+		List<Category> childList = categoryService.findAllChildCategory();
+		model.addAttribute("parentList", parentList);
+		model.addAttribute("childList", childList);
+		Integer categoryId = condition.getProduct().getCategoryId();
+		model.addAttribute("categoryId", categoryId);
 		String name = condition.getProduct().getName();
 		model.addAttribute("name", name);
 		return "search";
