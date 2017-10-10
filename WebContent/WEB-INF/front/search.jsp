@@ -14,7 +14,9 @@
 	<title>${name }--分类</title>
 	<%@ include file="common/head.jsp" %>
 	<%@ include file="common/logo.jsp" %>
-	<link rel="stylesheet" href="${prc }/resources/front/css/index_style.css" />
+	<link rel="stylesheet" href="${prc }/resources/front/css/search_style.css" />
+	<link rel="stylesheet" type="text/css" href="${prc }/resources/thrLib/bootstrap/css/bootstrap.css" />
+	<script type="text/javascript" src="${prc }/resources/thrLib/jquery/jquery-1.11.1.js"></script>
 	
 
 </head>
@@ -65,7 +67,7 @@
 			</div>
 		</div>
 
-			<div style="margin: 10px auto; width: 1100px;">
+			<div id="proPlay" style="margin: 10px auto; width: 1100px;">
 				<ul  >
 				<c:forEach items="${pageBean.list }" var="product">
 					<li style="width: 180px;height: 180px; margin: 10px;  float: left;">
@@ -79,11 +81,61 @@
 			</ul>
 			<div class="clearfix"></div>
 			</div>
+			<!-- 分页开始 -->
+			<div style="width: 1100px; margin: 0 auto; " >
+				<nav aria-label="Page navigation">
+	  				<ul class="pagination">
+	  				<!-- 左箭头开始 -->
+				    <li>
+				        <c:if test="${pageBean.pageIndex==1 }">
+					      <a href="#" aria-label="Previous">
+					        <span aria-hidden="true">&laquo;</span>
+					      </a>
+				        </c:if>
+				        <c:if test="${pageBean.pageIndex!=1 }">
+					      <a href="${prc}/search/search.shtml?name=${name}&categoryId=${categoryId}&pageIndex=${pageBean.pageIndex-1}" aria-label="Previous">
+					        <span aria-hidden="true">&laquo;</span>
+					      </a>
+				        </c:if>
+				    </li>
+	  				<!-- 左箭头结束 -->
+	  				<!-- 中间数字开始 -->
+				    <c:forEach begin="1" end="${pageBean.totalPage }" var="pageIndex" >
+					    <li><a href="${prc}/search/search.shtml?name=${name}&categoryId=${categoryId}&pageIndex=${pageIndex}">${pageIndex }</a></li>
+					</c:forEach>
+	  				<!-- 中间数字结束 -->
+	  				<!-- 右箭头开始 -->
+				    <li>
+				    	<c:if test="${pageBean.pageIndex==pageBean.totalPage }">
+					      <a href="#" aria-label="Next">
+					        <span aria-hidden="true">&raquo;</span>
+					      </a>
+				    	</c:if>
+				    	<c:if test="${pageBean.pageIndex!=pageBean.totalPage }">
+					      <a href="${prc}/search/search.shtml?name=${name}&categoryId=${categoryId}&pageIndex=${pageBean.pageIndex+1}" aria-label="Next">
+					        <span aria-hidden="true">&raquo;</span>
+					      </a>
+				    	</c:if>
+				    </li>
+	  				<!-- 右箭头结束 -->
+				  </ul>
+				</nav>
+			</div>
 			
-	
-
-
-
+			<%-- <div style="width: 1100px; margin: 0 auto; " >
+				<ul style="float: right;margin-right: 10%;">
+					<li><a href="${prc }/search/search.shtml?categoryId=${categoryId }&pageIndex=${pageIndex-1 }"><span style="border: 1px solid blue;">&lt;&lt;</span></a></li>
+					
+					<c:forEach begin="1" end="${pageBean.totalPage }" var="pageIndex" >
+						<li><a href="${prc }/search/search.shtml?categoryId=${categoryId }&pageIndex=${pageIndex }"><span>${pageIndex }</span></a></li>
+					</c:forEach>
+					
+					
+					<li><a href=""><span style="border: 1px solid blue;">&gt;&gt;</span></a></li>
+				</ul>
+				<div class="clearfix"></div>
+			</div> --%>
+			<!-- 分页结束 -->
 <div style="height:100px"></div>
 
 <div class="sp">
@@ -264,20 +316,5 @@
 			COPYRIGHT 2010-2017 北京创锐文化传媒有限公司 JUMEI.COM 保留一切权利. 客服热线：400-123-888888<br /> 
 			京公网安备 110101020011226|京ICP证111033号|食品流通许可证 SP1101051110165515（1-1）|营业执照
 		</div>
-<script type="text/javascript">
-    //hover 触发两个事件，鼠标移上去和移走
-    //mousehover 只触发移上去事件
-    $(".top-nav ul li").hover(function(){
-        $(this).addClass("hover").siblings().removeClass("hover");
-        $(this).find("li .nav a").addClass("hover");
-        $(this).find(".con").show();
-    },function(){
-        //$(this).css("background-color","#f5f5f5");
-        $(this).find(".con").hide();
-        //$(this).find(".nav a").removeClass("hover");
-        $(this).removeClass("hover");
-        $(this).find(".nav a").removeClass("hover");
-    })
-</script>
 </body>
 </html>

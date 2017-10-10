@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.situ.mall.pojo.Product;
 import com.situ.mall.service.front.ISearchService;
+import com.situ.mall.vo.FindByCondition;
 import com.situ.mall.vo.PageBean;
 
 @Controller
@@ -24,10 +25,18 @@ public class SearchController {
 		if (pageIndex == null) {
 			pageIndex = 1;
 		}
-		pageSize = 15;
+		pageSize = 1;
 		PageBean<Product> pageBean = searchService.findByCategory(categoryId, pageIndex, pageSize);
 		model.addAttribute("pageBean", pageBean);
 		model.addAttribute("name", name);
+		model.addAttribute("categoryId", categoryId);
 		return "search";
+	}
+	
+	@RequestMapping("findByCondition")
+	private String findByCondition(FindByCondition condition, Model model) {
+		
+		
+		return "";
 	}
 }

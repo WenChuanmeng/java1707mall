@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>添加分类</title>
 	<!-- head begin -->
-		<%@include file="../common/header.jsp" %>
+		<%@include file="common/header.jsp" %>
 	<!-- head end -->
 </head>
 <body>

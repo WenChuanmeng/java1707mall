@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>商品管理</title>
-<%@include file="../common/header.jsp" %>
+<%@include file="common/header.jsp" %>
 <style type="text/css">
 	.form-group{
 		width: 140px;
