@@ -10,7 +10,7 @@
     	<c:set var="prc" value="${pageContext.request.contextPath }" ></c:set>
 		<link rel="stylesheet" type="text/css" href="${prc }/resources/front/css/login_style.css" />
 	</head>
-
+	</script>
 	<body>
 		<div class="top_center">
 			<div class="left">
@@ -39,6 +39,7 @@
 								<a href="">扫码登录</a>
 							</li>
 							<li>
+								<span style="color: red;">${error }</span>
 								<input class="login_user" name="username" type="text" placeholder="会员名/邮箱/手机号" />
 								<input class="login_password" name="password" type="password" placeholder="密码" />
 								<input class="login_btn" type="submit" value="登录" />

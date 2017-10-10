@@ -1,5 +1,8 @@
 package com.situ.mall.controller.front;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -34,8 +37,9 @@ public class LoginController {
 			System.out.println(user);
 			return "redirect:/index.shtml";
 		} else {
-
+			model.addAttribute("error", "用户名或密码错误");
+			return "login";
 		}
-		return "";
+		
 	}
 }
