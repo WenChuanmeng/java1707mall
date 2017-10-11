@@ -13,7 +13,8 @@
 				<div class="right">
 					<ul>
 						<c:if test="${user != null }">
-							<li><a class="login" href="${prc }/login/login.shtml" target="_blank">${user.username }</a></li>
+							<li><a class="login" href="#" target="_blank">${user.username }</a></li>
+							<li><a class="login" href="${prc }/loginOut/loginOut.shtml" >退出</a></li>
 						</c:if>
 						<c:if test="${user == null }">
 							<li><a class="login" href="${prc }/login/login.shtml" target="_blank">请登录</a></li>
