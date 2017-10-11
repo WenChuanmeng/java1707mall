@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.situ.mall.dao.front.SearchDao;
+import com.situ.mall.pojo.Category;
 import com.situ.mall.pojo.Product;
 import com.situ.mall.service.front.ISearchService;
 import com.situ.mall.vo.FindByCondition;
@@ -47,6 +48,12 @@ public class SearchServiceImpl implements ISearchService {
 		List<Product> list = searchDao.findByCondition(condition);
 		pageBean.setList(list);
 		return pageBean;
+	}
+
+	@Override
+	public Category findByCategoryId(Integer categoryId) {
+		
+		return searchDao.findByCategoryId(categoryId);
 	}
 
 }

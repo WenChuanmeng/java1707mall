@@ -37,9 +37,10 @@
 	<div style="margin: 10px auto; width: 1100px;">
 			<div class="search_center" style="float: right;">
 				<form id="subForm" action="${prc }/search/findByCondition.shtml" >
-					<input type="hidden" name="pageIndex" id="pageIndex" />
+					<input class="btn1" type="hidden" name="pageIndex" id="pageIndex" />
 					<input class="btn1" type="hidden" name="product.categoryId" value="${categoryId }" />
-					<input class="btn1" type="hidden" name="product.name" value="${name }" placeholder="商品名称"/>
+					<input class="btn1" type="text" name="product.name" value="${name }" placeholder="在结果中搜索"/>
+					<input class="btn2" type="submit" value="搜索" />
 				</form>
 			</div>
 			<c:forEach items="${parentList }" var="parent">
@@ -52,7 +53,7 @@
 							<li>
 								<a style="text-decoration: none;" href="${prc }/search/search.shtml?name=${child.name}&categoryId=${child.id}">
 									<span style="margin: 0 5px; color: rgb(244,20,67);">${child.name }</span>
-								</a>	
+								</a>
 							</li>
 						</c:if>
 					</c:forEach>
@@ -121,20 +122,6 @@
 			  </ul>
 			</nav>
 		</div>
-		
-		<%-- <div style="width: 1100px; margin: 0 auto; " >
-			<ul style="float: right;margin-right: 10%;">
-				<li><a href="${prc }/search/search.shtml?categoryId=${categoryId }&pageIndex=${pageIndex-1 }"><span style="border: 1px solid blue;">&lt;&lt;</span></a></li>
-				
-				<c:forEach begin="1" end="${pageBean.totalPage }" var="pageIndex" >
-					<li><a href="${prc }/search/search.shtml?categoryId=${categoryId }&pageIndex=${pageIndex }"><span>${pageIndex }</span></a></li>
-				</c:forEach>
-				
-				
-				<li><a href=""><span style="border: 1px solid blue;">&gt;&gt;</span></a></li>
-			</ul>
-			<div class="clearfix"></div>
-		</div> --%>
 		<!-- 分页结束 -->
 <div style="height:100px"></div>
 

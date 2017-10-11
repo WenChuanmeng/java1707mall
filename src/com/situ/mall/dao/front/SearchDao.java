@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.situ.mall.pojo.Category;
 import com.situ.mall.pojo.Product;
 import com.situ.mall.vo.FindByCondition;
 
@@ -38,6 +39,13 @@ public interface SearchDao {
 	 * @return List<Product>
 	 */
 	List<Product> findByCondition(FindByCondition condition);
+
+	/**
+	 * 获得分类的名称
+	 * @param categoryId
+	 * @return Category
+	 */
+	Category findByCategoryId(Integer categoryId);
 
 	
 }

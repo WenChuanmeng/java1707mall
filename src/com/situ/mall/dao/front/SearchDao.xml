@@ -75,4 +75,9 @@
 		</where> 
 		limit #{pageIndex},#{pageSize};
 	</select>
+	
+	<!-- 查询分类的名称 -->
+	<select id="findByCategoryId" parameterType="int" resultType="Category">
+		select id,name from category where id=#{categoryId}
+	</select>
 </mapper>

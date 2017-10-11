@@ -35,10 +35,14 @@ public class SearchController {
 		List<Category> parentList = categoryService.fingAllCategoryParent();
 		List<Category> childList = categoryService.findAllChildCategory();
 		model.addAttribute("pageBean", pageBean);
-		model.addAttribute("name", name);
 		model.addAttribute("categoryId", categoryId);
 		model.addAttribute("parentList", parentList);
 		model.addAttribute("childList", childList);
+		//获得分类的名称
+		if (null != categoryId) {
+			Category category = searchService.findByCategoryId(categoryId);
+			model.addAttribute("category", category.getName());
+		}
 		return "search";
 	}
 	
@@ -60,6 +64,11 @@ public class SearchController {
 		model.addAttribute("categoryId", categoryId);
 		String name = condition.getProduct().getName();
 		model.addAttribute("name", name);
+		//获得分类的名称
+		if (null != categoryId) {
+			Category category = searchService.findByCategoryId(categoryId);
+			model.addAttribute("category", category.getName());
+		}
 		return "search";
 	}
 }
