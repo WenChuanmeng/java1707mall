@@ -3,6 +3,7 @@ package com.situ.mall.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.situ.mall.constant.MallConstant;
 
 @SuppressWarnings("all")
@@ -75,6 +76,7 @@ public class Product implements Serializable {
 		this.updateTime = updateTime;
 	}
 
+	@JsonIgnore
 	public String getFullUrl() {
 		return MallConstant.SERVER_ADDRES + mainImage;
 	}
@@ -199,6 +201,7 @@ public class Product implements Serializable {
 	/**
 	 * @return the stock
 	 */
+	@JsonIgnore
 	public Integer getStock() {
 		return stock;
 	}

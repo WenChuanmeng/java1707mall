@@ -42,6 +42,10 @@
 				}
 				$("#num").val(num);
 			}
+			function addCart(productId) {
+				var amount = $("#num").val();
+				window.location.href="${prc}/cart/addCart.shtml?productId="+productId+"&amount="+amount;
+			}
 		</script>
 		<script type="text/javascript" src="${prc }/resources/front/js/base.js"></script>
 	</head>
@@ -316,7 +320,7 @@
 						<span>
 							库存：${product.stock }
 						</span>
-						<input class="right_bottom_addCar" type="button" value="加入购物车" />
+						<input class="right_bottom_addCar" onclick="addCart(${product.id})" type="button" value="加入购物车" />
 						<span class="right_txt_bottom">
 							温馨提示&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;·支持7天无理由退货
 						</span>
