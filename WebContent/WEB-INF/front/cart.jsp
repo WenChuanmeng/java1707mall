@@ -45,7 +45,7 @@
 		
 		<div class="logo_center">
 			<div class="left">
-				<img class="logo_img" src="${prc }/resources/front/img/LOGO.png" />
+				<a href="${prc }/index.shtml"><img class="logo_img" src="${prc }/resources/front/img/LOGO.png" /></a>
 				<span class="car_text">购物车</span>
 			</div>
 			<div class="right">
@@ -148,7 +148,7 @@
 		
 		
 		<div class="blank">
-			
+			<a href="${prc }/product/detail.shtml?id=${buyCart.productId}"><span>返回继续购物</span></a>
 		</div>
 		<div class="total">
 				<ul style="color: #666666;margin-top: 10px;margin-bottom: 10px;">

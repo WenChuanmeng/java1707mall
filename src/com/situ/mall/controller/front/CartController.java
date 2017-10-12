@@ -2,6 +2,7 @@ package com.situ.mall.controller.front;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -150,12 +151,12 @@ public class CartController {
 		}
 		
 		//放到域对象中返回前端展示的这个购物车，需要将Product对象填满数据才行
-		List<CartItem> items = buyCart.getCartItems();
+		/*List<CartItem> items = buyCart.getCartItems();
 		for (CartItem cartItem : items) {
 			Product product = productService.findById(cartItem.getProduct().getId());
 			cartItem.setProduct(product);
 		}
-		model.addAttribute("buyCart", buyCart);
+		model.addAttribute("buyCart", buyCart);*/
 		return "redirect:cart.shtml";
 	}
 	
@@ -189,25 +190,20 @@ public class CartController {
 			}
 		}
 		
-		if (null != productId) {
+		if (null != buyCart) {
 			List<CartItem> cartItems = buyCart.getCartItems();
 			if (null != cartItems) {
-				a : for (CartItem item : cartItems) {
-					if (productId == item.getProduct().getId()) {
-						Product product = item.getProduct();
-						cartItems.remove(item);
-						break a;
+				
+				Iterator<CartItem> iterator = cartItems.iterator();
+				while (iterator.hasNext()) {
+					CartItem cartItem = (CartItem) iterator.next();
+					if (productId == cartItem.getProduct().getId()) {
+						iterator.remove();
 					}
 				}
-				for (CartItem cartItem : cartItems) {
-					Product productTemp = productService.findById(cartItem.getProduct().getId());
-					Product product = new Product();
-					product.setStock(productTemp.getStock());
-					product.setPrice(productTemp.getPrice());
-					cartItem.setProduct(product);
-					buyCart.addItem(cartItem);
-				}
+				
 				//把buyCart以json加入到cookie
+				System.out.println(buyCart);
 				StringWriter stringWriter = new StringWriter();
 				try {
 					objectMapper.writeValue(stringWriter, buyCart);
@@ -232,12 +228,12 @@ public class CartController {
 			}
 		}
 		//放到域对象中返回前端展示的这个购物车，需要将Product对象填满数据才行
-		List<CartItem> items = buyCart.getCartItems();
+		/*List<CartItem> items = buyCart.getCartItems();
 		for (CartItem cartItem : items) {
 			Product product = productService.findById(cartItem.getProduct().getId());
 			cartItem.setProduct(product);
 		}
-		model.addAttribute("buyCart", buyCart);
+		model.addAttribute("buyCart", buyCart);*/
 		return "redirect:cart.shtml";
 	}
 }

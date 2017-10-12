@@ -318,6 +318,13 @@ a {
 .blank{
 	width: 1000px;
 	height: 44px;
+	margin: 5px auto;
+}
+.blank span{
+	
+	font-size: 16px;
+	font-weight: 800;
+	color: rgb(244,20,67);
 }
 .total_right{
 	margin-left: 18px;
