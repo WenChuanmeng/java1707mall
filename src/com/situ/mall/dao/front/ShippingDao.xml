@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.situ.mall.dao.front.ShippingDao">
+
+	<sql id="shippingColums">
+		id,user_id,receiver_name,receiver_phone,receiver_mobile,
+		receiver_province,receiver_city,receiver_district,
+		receiver_address,receiver_zip,create_time,update_time
+	</sql>
+	<resultMap type="Shipping" id="shipingMap">
+		<id column="id" property="id" />
+		<result column="user_id" property="userId" />
+		<result column="receiver_name" property="receiverName" />
+		<result column="receiver_phone" property="receiverPhone" />
+		<result column="receiver_mobile" property="receiverMobile" />
+		<result column="receiver_province" property="receiverProvince" />
+		<result column="receiver_city" property="receiverCity" />
+		<result column="receiver_district" property="receiverCity" />
+		<result column="receiver_address" property="receiverAddress" />
+		<result column="receiver_zip" property="receiverZip" />
+		<result column="pcreate_time" property="createTime" javaType="java.sql.Date" jdbcType="DATE" />
+		<result column="pupdate_time" property="updateTime" javaType="java.sql.Date" jdbcType="DATE" />
+	</resultMap>
+	<!-- 根据id查找shiping表。查询user信息 -->
+	<select id="findById" parameterType="int" resultMap="shipingMap">
+		select <include refid="shippingColums"/> 
+		from shipping where user_id=#{userId};
+	</select>
+
+</mapper>

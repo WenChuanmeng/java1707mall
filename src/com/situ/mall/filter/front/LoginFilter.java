@@ -1,6 +1,8 @@
 package com.situ.mall.filter.front;
 
 import java.io.IOException;
+
+import javax.jws.soap.SOAPBinding.Use;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -9,6 +11,10 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
+
+import com.situ.mall.pojo.User;
 
 public class LoginFilter implements Filter {
 
@@ -25,7 +31,19 @@ public class LoginFilter implements Filter {
 		
 		String requestURI = req.getRequestURI();
 		if (requestURI != null && requestURI.startsWith("/Java1707Mall/order")) {
-			
+			HttpSession session = req.getSession();
+			if (null != session) {
+				User user = (User) session.getAttribute("user");
+				if (null != user) {
+					chain.doFilter(request, response);
+				} else {
+					resp.sendRedirect(req.getContextPath() + "/login/login.shtml");
+					return;
+				}
+			} else {
+				resp.sendRedirect(req.getContextPath() + "/login/login.shtml");
+				return;
+			}
 		}
 		chain.doFilter(request, response);
 	}

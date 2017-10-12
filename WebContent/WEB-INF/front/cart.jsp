@@ -10,7 +10,7 @@
 	</head>
 	<script type="text/javascript">
 		function sub(productId) {
-			var num = $("#num").val();
+			var num = $("#num"+productId).val();
 			
 				num--;
 				if (num == 0) {
@@ -18,11 +18,11 @@
 					return;
 				} 
 			
-			$("#num").val(num)
+			$("#num"+productId).val(num)
 			window.location.href="${prc}/cart/addCart.shtml?productId="+productId+"&amount=-1";
 		}
 		function add(productId) {
-			var num = $("#num").val();
+			var num = $("#num"+productId).val();
 			if (num == "${product.stock}") {
 				num = "${product.stock}";
 				alert("只能购买" + num + "件");
@@ -30,7 +30,7 @@
 			} else {
 				num++;
 			}
-			$("#num").val(num);
+			$("#num"+productId).val(num);
 			window.location.href="${prc}/cart/addCart.shtml?productId="+productId+"&amount=1";
 		}
 		function delCart(productId) {
@@ -130,7 +130,7 @@
 					</li>
 					<li class="num_select">
 						<input class="car_ul_btn1" type="button" onclick="sub(${items.product.id})" value="-" />
-						<input class="car_ul_text" type="text" id="num" value="${items.amount }" />
+						<input class="car_ul_text" type="text" id="num${items.product.id}" value="${items.amount }" />
 						<input class="car_ul_btn2" type="button" onclick="add(${items.product.id})" value="+" />
 					</li>
 					<li class="money">
@@ -157,7 +157,7 @@
 					</li>
 					<li style="margin-left: 8px;margin-right: 265px;">全选</li>
 					<li style="margin-left: 242px;margin-right: 18px;">总金额（已免运费）：<span style="color: #F41443;">¥${buyCart.totalPrice }</span></li>
-					<li class="total_right"><a href="">立即结算</a></li>
+					<li class="total_right"><a href="${prc }/order/order.shtml">立即结算</a></li>
 				</ul>
 			</div>
 					<div class="sp">
