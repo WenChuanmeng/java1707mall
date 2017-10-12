@@ -175,84 +175,6 @@
 							</div>
 							<!-- 配送方式 END-->                    <!-- 配送方式 END-->
 						</div>
-						<!-- 送货时间 -->
-						<div class="xm-box">
-							<div class="box-hd">
-								<h2 class="title">送货时间</h2>
-							</div>
-							<div class="box-bd">
-								<ul class="checkout-option-list clearfix J_optionList">
-									<li class="item selected"><input type="radio" checked="checked" name="Checkout[best_time]" value="1"><p>不限送货时间<span>周一至周日</span></p></li><li class="item "><input type="radio"  name="Checkout[best_time]" value="2"><p>工作日送货<span>周一至周五</span></p></li><li class="item "><input type="radio"  name="Checkout[best_time]" value="3"><p>双休日、假日送货<span>周六至周日</span></p></li>                        </ul>
-							</div>
-						</div>
-						<!-- 送货时间 END-->
-						<!-- 发票信息 -->
-						<div id="checkoutInvoice">
-							<div class="xm-box">
-								<div class="box-hd">
-									<h2 class="title">发票信息</h2>
-								</div>
-								<div class="box-bd">
-									<ul class="checkout-option-list checkout-option-invoice clearfix J_optionList J_optionInvoice">
-										<li class="hide">
-											电子个人发票4
-										</li>
-										<li class="item selected">
-											<!--<label><input type="radio"  class="needInvoice" value="0" name="Checkout[invoice]">不开发票</label>-->
-											<input type="radio"    checked="checked"  value="4" name="Checkout[invoice]">
-											<p>电子发票（非纸质）</p>
-										</li>
-										<li class="item ">
-											<input type="radio"   value="1" name="Checkout[invoice]">
-											<p>普通发票（纸质）</p>
-										</li>
-									</ul>
-									<p id="eInvoiceTip" class="e-invoice-tip ">
-										电子发票是税务局认可的有效凭证，可作为售后维权凭据，不随商品寄送。开票后不可更换纸质发票，如需报销请选择普通发票。<a href="#" target="_blank">什么是电子发票？</a>
-									</p>
-									<div class="invoice-info nvoice-info-1" id="checkoutInvoiceElectronic" style="display:none;">
-
-										<p class="tip">电子发票目前仅对个人用户开具，不可用于单位报销 ，不随商品寄送</p>
-										<p>发票内容：购买商品明细</p>
-										<p>发票抬头：个人</p>
-										<p>
-											<span class="hide"><input type="radio" value="4" name="Checkout[invoice_type]"   checked="checked"   id="electronicPersonal" class="invoiceType"></span>
-										<dl>
-											<dt>什么是电子发票?</dt>
-											<dd>&#903; 电子发票是纸质发票的映像，是税务局认可的有效凭证，与传统纸质发票具有同等法律效力，可作为售后维权凭据。</dd>
-											<dd>&#903; 开具电子服务于个人，开票后不可更换纸质发票，不可用于单位报销。</dd>
-											<dd>&#903; 您在订单详情的"发票信息"栏可查看、下载您的电子发票。<a href="#" target="_blank">什么是电子发票？</a></dd>
-										</dl>
-										</p>
-									</div>
-									<div class="invoice-info invoice-info-2" id="checkoutInvoiceDetail"  style="display:none;" >
-										<p>发票内容：购买商品明细</p>
-										<p>
-											发票抬头：请确认单位名称正确,以免因名称错误耽搁您的报销。注：合约机话费仅能开个人发票
-										</p>
-										<ul class="type clearfix J_invoiceType">
-											<li class="hide">
-												<input type="radio" value="0" name="Checkout[invoice_type]" id="noNeedInvoice" >
-											</li>
-											<li class="">
-												<input  class="invoiceType" type="radio" id="commonPersonal" name="Checkout[invoice_type]" value="1" >
-												个人
-											</li>
-											<li class="">
-												<input  class="invoiceType" type="radio" name="Checkout[invoice_type]" value="2" >
-												单位
-											</li>
-										</ul>
-										<div  id='CheckoutInvoiceTitle' class=" hide  invoice-title">
-											<label for="Checkout[invoice_title]">单位名称：</label>
-											<input name="Checkout[invoice_title]" type="text" maxlength="49" value="" class="input"> <span class="tip-msg J_tipMsg"></span>
-										</div>
-
-									</div>
-
-								</div>
-							</div>                </div>
-						<!-- 发票信息 END-->
 					</div>
 					<div class="checkout-box-ft">
 						<!-- 商品清单 -->
@@ -269,59 +191,27 @@
 											<span class="col col-3">购买数量</span>
 											<span class="col col-4">小计（元）</span>
 										</dt>
+										
+									<c:forEach items="${buyCart.cartItems }" var="item">
 										<dd class="item clearfix">
 											<div class="item-row">
 												<div class="col col-1">
 													<div class="g-pic">
-														<img src="images/shangpinxiangqing/X1.png" width="40" height="40" />
+														<img src="${item.product.fullUrl }" width="40" height="40" />
 													</div>
 													<div class="g-info">
 														<a href="#" target="_blank">
-															赛亿（shinee)取暖器家用/取暖电器/电暖器/电暖气台式摇头暖风机HN2118PT
+															${item.product.name }
 														</a>
 													</div>
 												</div>
 
-												<div class="col col-2">39元</div>
-												<div class="col col-3">1</div>
-												<div class="col col-4">39元</div>
+												<div class="col col-2">${item.product.price }元</div>
+												<div class="col col-3">${item.amount }</div>
+												<div class="col col-4">${item.product.price*item.amount }元</div>
 											</div>
 										</dd>
-										<dd class="item clearfix">
-											<div class="item-row">
-												<div class="col col-1">
-													<div class="g-pic">
-														<img src="images/shangpinxiangqing/X-1.png" width="40" height="40" />
-													</div>
-													<div class="g-info">
-														<a href="#" target="_blank">
-															赛亿（shinee)取暖器家用/取暖电器/电暖器/电暖气台式摇头暖风机HN2118PT
-														</a>
-													</div>
-												</div>
-												<div class="col col-2">49元</div>
-												<div class="col col-3">1</div>
-												<div class="col col-4">49元</div>
-											</div>
-										</dd>
-										<dd class="item clearfix">
-											<div class="item-row">
-												<div class="col col-1">
-													<div class="g-pic">
-														<img src="images/shangpinxiangqing/X2.png" width="40" height="40" />
-													</div>
-													<div class="g-info">
-														<a href="#" target="_blank">
-															赛亿（shinee)取暖器家用/取暖电器/电暖器/电暖气台式摇头暖风机HN2118PT
-														</a>
-													</div>
-												</div>
-
-												<div class="col col-2">39元</div>
-												<div class="col col-3">4</div>
-												<div class="col col-4">156元</div>
-											</div>
-										</dd>
+									</c:forEach>
 									</dl>
 									<div class="checkout-count clearfix">
 										<div class="checkout-count-extend xm-add-buy">
@@ -350,7 +240,7 @@
 													运费：<span id="postageDesc">0元</span>
 												</li>
 											</ul>
-											<p class="checkout-total">应付总额：<span><strong id="totalPrice">244</strong>元</span></p>
+											<p class="checkout-total">应付总额：<span><strong id="totalPrice">${buyCart.totalPrice }</strong>元</span></p>
 										</div>
 										<!--  -->
 									</div>

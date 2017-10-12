@@ -756,7 +756,8 @@ em {
 }
 .checkout-price li {
 	line-height:2;
-	text-align:right
+	text-align:right;
+	display: block;
 }
 .checkout-price li span {
 	display:inline-block;
