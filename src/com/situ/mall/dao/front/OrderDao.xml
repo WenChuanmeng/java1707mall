@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.situ.mall.dao.front.OrderDao">
+
+	<!-- order_itemColums -->
+	<sql id="orderItemColums">
+		id,user_id,order_no,product_id,product_name,product_image,current_unit_price,quantity,total_price,create_time,update_time
+	</sql>
+	
+	<!--order_itemMap  -->
+	<resultMap type="OrderItem" id="orderItemMap">
+		<id column="id" property="id" />
+		<result column="user_id" property="userId"/>
+		<result column="order_no" property="orderNo"/>
+		<result column="product_id" property="productId"/>
+		<result column="product_name" property="productName"/>
+		<result column="product_image" property="productImage"/>
+		<result column="current_unit_price" property="currentUnitPrice"/>
+		<result column="quantity" property="quantity"/>
+		<result column="total_price" property="totalPrice"/>
+		<result column="pcreate_time" property="createTime" javaType="java.sql.Date" jdbcType="DATE" />
+		<result column="pupdate_time" property="updateTime" javaType="java.sql.Date" jdbcType="DATE" />
+	</resultMap>
+
+	<!-- 添加订单 -->
+	<insert id="add" parameterType="order">
+		insert into orders (order_no,user_id,shipping_id,payment,payment_type,postage,status,create_time,update_time) values 
+		(#{orderNo},#{userId},#{shippingId},#{payment},#{paymentType},#{postage},#{status},now(),now())
+	</insert>
+	
+	<!-- 添加订单项 -->
+	<insert id="addOrderItem" parameterType="OrderItem">
+		insert into order_item (user_id,order_no,product_id,product_name,product_image,current_unit_price,quantity,total_price,create_time,update_time) values 
+		(#{userId},#{orderNo},#{productId},#{productName},#{productImage},#{currentUnitPrice},#{quantity},#{totalPrice},now(),now())
+	</insert>
+	
+	<!-- 根据订单号查询订单项 -->
+	<select id="findByOrderNo" parameterType="long" resultMap="orderItemMap" >
+		select <include refid="orderItemColums"/> from order_item where order_no=#{orderNo};
+	</select>
+
+</mapper>

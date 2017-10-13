@@ -784,7 +784,8 @@ em {
 	padding:20px 30px;
 	background:#fafafa;
 	text-align:right;
-	color:#333
+	color:#333;
+	float: right;
 }
 .checkout-confirm p {
 	font-size:12px

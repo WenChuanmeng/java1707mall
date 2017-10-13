@@ -5,21 +5,6 @@ import java.util.Date;
 
 public class Shipping implements Serializable {
 
-
-/*FieldTypeComment
-idint(11)
-user_idint(11)用户id
-receiver_namevarchar(20)收货姓名
-receiver_phonevarchar(20)收货固定电话
-receiver_mobilevarchar(20)收货移动电话
-receiver_provincevarchar(20)省份
-receiver_cityvarchar(20)城市
-receiver_districtvarchar(20)区/县
-receiver_addressvarchar(200)详细地址
-receiver_zipvarchar(6)邮编
-create_timedatetime
-update_timedatetime*/
-
 	//自增id
 	private Integer id;
 	//用户id

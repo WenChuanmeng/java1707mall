@@ -17,14 +17,6 @@
 	<link rel="shortcut icon" type="image/x-icon" href="${prc }/resources/front/img/icon/favicon.ico">
 	<link rel="stylesheet" type="text/css" href="${prc }/resources/front/css/car/base.css">
 	<link rel="stylesheet" type="text/css" href="${prc }/resources/front/css/car/home.css">
-	<script type="text/javascript">
-		 function toAddorder() {
-			var isSub = confirm("确定下单？");
-			if (isSub) {
-				 $("#subForm").submit();
-			}
-		}
-	</script>
 </head>
 <body>
 
@@ -47,82 +39,22 @@
 								<div class="clearfix xm-address-list" id="checkoutAddrList">
 									<dl class="item" >
 										<dt>
-											<strong class="itemConsignee">${shipping.receiverName}</strong>
-											<span class="itemTag tag">家</span>
+											<strong class="itemConsignee"></strong>
 										</dt>
 										<dd>
-											<p class="tel itemTel">188010666666</p>
-											<p class="itemRegion">${shipping.receiverProvince}&nbsp;&nbsp;${shipping.receiverCity }</p>
-											<p class="itemStreet">${shipping.receiverAddress}</p>
+											<p class="tel itemTel">${orderNo }</p>
+											<p class="itemRegion">${totalPrice }&nbsp;&nbsp;</p>
+											<p class="itemStreet"></p>
 											<span class="edit-btn J_editAddr">编辑</span>
 										</dd>
 										<dd style="display:none">
 											<input type="radio" name="Checkout[address]" class="addressId"  value="10140916720030323">
 										</dd>
 									</dl>
-									<div class="item use-new-addr"  id="J_useNewAddr" data-state="off">
-										<span class="iconfont icon-add"><img src="images/add_cart.png" /></span>
-										使用新地址
-									</div>
 								</div>
-								<input type="hidden" name="newAddress[type]" id="newType" value="common">
-								<input type="hidden" name="newAddress[consignee]" id="newConsignee">
-								<input type="hidden" name="newAddress[province]" id="newProvince">
-								<input type="hidden" name="newAddress[city]" id="newCity">
-								<input type="hidden" name="newAddress[district]" id="newCounty">
-								<input type="hidden" name="newAddress[address]" id="newStreet">
-								<input type="hidden" name="newAddress[zipcode]" id="newZipcode">
-								<input type="hidden" name="newAddress[tel]" id="newTel">
-								<input type="hidden" name="newAddress[tag_name]" id="newTag">
-								<!--点击弹出新增/收货地址界面start-->
-								<div class="xm-edit-addr-box" id="J_editAddrBox">
-									<div class="bd">
-										<div class="item">
-											<label>收货人姓名<span>*</span></label>
-											<input type="text" name="userAddress[consignee]" id="Consignee" class="input" placeholder="收货人姓名" maxlength="15" autocomplete='off'>
-											<p class="tip-msg tipMsg"></p>
-										</div>
-										<div class="item">
-											<label>联系电话<span>*</span></label>
-											<input type="text" name="userAddress[tel]" class="input" id="Telephone" placeholder="11位手机号" autocomplete='off'>
-											<p class="tel-modify-tip" id="telModifyTip"></p>
-											<p class="tip-msg tipMsg"></p>
-										</div>
-										<div class="item">
-											<label>地址<span>*</span></label>
-											<select name="userAddress[province]" id="Provinces" class="select-1">
-												<option>省份/自治区</option>
-											</select>
-											<select name="userAddress[city]"  id="Citys" class="select-2" disabled>
-												<option>城市/地区/自治州</option>
-											</select>
-											<select name="userAddress[county]"  id="Countys" class="select-3" disabled>
-												<option>区/县</option>
-											</select>
-											<textarea   name="userAddress[street]" class="input-area" id="Street" placeholder="路名或街道地址，门牌号"></textarea>
-											<p class="tip-msg tipMsg"></p>
-										</div>
-										<div class="item">
-											<label>邮政编码<span>*</span></label>
-											<input type="text" name="userAddress[zipcode]" id="Zipcode" class="input" placeholder="邮政编码"  autocomplete='off'>
-											<p class="zipcode-tip" id="zipcodeTip"></p>
-											<p class="tip-msg tipMsg"></p>
-										</div>
-										<div class="item">
-											<label>地址标签<span>*</span></label>
-											<input type="text" name="userAddress[tag]" id="Tag" class="input" placeholder='地址标签：如"家"、"公司"。限5个字内'  >
-											<p class="tip-msg tipMsg"></p>
-										</div>
-									</div>
-									<div class="ft clearfix">
-										<button  type="button"  class="btn btn-lineDake btn-small " id="J_editAddrCancel">取消</button>
-										<button type="button" class="btn btn-primary  btn-small " id="J_editAddrOk">保存</button>
-									</div>
-								</div>
-								<!--点击弹出新增/收货地址界面end-->
 								<div class="xm-edit-addr-backdrop" id="J_editAddrBackdrop"></div>
-							</div>                </div>
-						<!-- 收货地址 END-->
+							</div>                
+						</div>
 						<div id="checkoutPayment">
 							<!-- 支付方式 -->
 							<div class="xm-box">
@@ -134,147 +66,57 @@
 										<li class="item selected">
 											<input type="radio" name="Checkout[pay_id]" checked="checked" value="1">
 											<p>
-												在线支付                                <span></span>
+												<span>微信支付</span>
+											</p>
+										</li>
+										<li class="item selected">
+											<input type="radio" name="Checkout[pay_id]" checked="checked" value="1">
+											<p>
+												<span>支付宝支付</span>
+											</p>
+										</li>
+										<li class="item selected">
+											<input type="radio" name="Checkout[pay_id]" checked="checked" value="1">
+											<p>
+												<span>银行卡支付</span>
 											</p>
 										</li>
 									</ul>
 								</div>
 							</div>
 							<!-- 支付方式 END-->
-							<div class="xm-box">
-								<div class="box-hd ">
-									<h2 class="title">配送方式</h2>
-								</div>
-								<div class="box-bd">
-									<ul id="checkoutShipmentList" class="checkout-option-list clearfix J_optionList">
-										<li class="item selected">
-											<input type="radio" data-price="0" name="Checkout[shipment_id]" checked="checked" value="1">
-											<p>
-												快递配送（免运费）                                <span></span>
-											</p>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<!-- 配送方式 END-->                    <!-- 配送方式 END-->
 						</div>
-					</div>
-					<div class="checkout-box-ft">
+						<!-- 收货地址 END-->
+						<div class="checkout-box-ft">
 						<!-- 商品清单 -->
 						<div id="checkoutGoodsList" class="checkout-goods-box">
 							<div class="xm-box">
-								<div class="box-hd">
-									<h2 class="title">确认订单信息</h2>
-								</div>
 								<div class="box-bd">
-									<dl class="checkout-goods-list">
-										<dt class="clearfix">
-											<span class="col col-1">商品名称</span>
-											<span class="col col-2">购买价格</span>
-											<span class="col col-3">购买数量</span>
-											<span class="col col-4">小计（元）</span>
-										</dt>
-										
-									<c:forEach items="${buyCart.cartItems }" var="item">
-										<dd class="item clearfix">
-											<div class="item-row">
-												<div class="col col-1">
-													<div class="g-pic">
-														<img src="${item.product.fullUrl }" width="40" height="40" />
-													</div>
-													<div class="g-info">
-														<a href="#" target="_blank">
-															${item.product.name }
-														</a>
-													</div>
-												</div>
-
-												<div class="col col-2">${item.product.price }元</div>
-												<div class="col col-3">${item.amount }</div>
-												<div class="col col-4">${item.product.price*item.amount }元</div>
-											</div>
-										</dd>
-									</c:forEach>
-									</dl>
+									
 									<div class="checkout-count clearfix">
-										<div class="checkout-count-extend xm-add-buy">
-											<h3 class="title">会员留言</h2></br>
-												<input type="text" />
-
-										</div>
 										<!-- checkout-count-extend -->
-										<div class="checkout-price">
-											<ul>
-
-												<li>
-													订单总额：<span>${buyCart.totalPrice }元</span>
-												</li>
-												<li>
-													活动优惠：<span>-0元</span>
-													
-												</li>
-												<li>
-													优惠券抵扣：<span id="couponDesc">-0元</span>
-												</li>
-												<li>
-													运费：<span id="postageDesc">0元</span>
+										<div class="checkout-price" >
+											<ul  >
+												<li style="float: right;" >
+													订单总额：<span>${totalPrice }元</span>
 												</li>
 											</ul>
-											<p class="checkout-total">应付总额：<span><strong id="totalPrice">${buyCart.totalPrice }</strong>元</span></p>
+											<button style="float: right;"  class="btn btn-primary">立即下单</button>
 										</div>
 										<!--  -->
 									</div>
 								</div>
 							</div>
 
-							<!--S 加价购 产品选择弹框 -->
-							<div class="modal hide modal-choose-pro" id="J_choosePro-664">
-								<div class="modal-header">
-									<span class="close" data-dismiss='modal'><i class="iconfont">&#xe617;</i></span>
-									<h3>选择产品</h3>
-									<div class="more">
-										<div class="xm-recommend-page clearfix">
-											<a class="page-btn-prev   J_carouselPrev iconfont" href="javascript: void(0);">&#xe604;</a><a class="page-btn-next  J_carouselNext iconfont" href="javascript: void(0);">&#xe605;</a>
-										</div>
-									</div>
-								</div>
-								<div class="modal-body J_chooseProCarousel">
-									<div class="J_carouselWrap modal-choose-pro-list-wrap">
-										<ul class="clearfix J_carouselList">
-										</ul>
-									</div>
-								</div>
-								<div class="modal-footer">
-									<a href="#" class="btn btn-disabled J_chooseProBtn">加入购物车</a>
-								</div>
-							</div>
-							<!--E 加价购 产品选择弹框 -->
-
-							<!--S 保障计划 产品选择弹框 -->
 
 
 						</div>
 						<!-- 商品清单 END -->
-						<input type="hidden"  id="couponType" name="Checkout[couponsType]">
-						<input type="hidden" id="couponValue" name="Checkout[couponsValue]">
-						<div class="checkout-confirm">
-
-							<a href="#" class="btn btn-lineDakeLight btn-back-cart">返回购物车</a>
-							<button  onclick="toAddorder()" class="btn btn-primary">立即下单</button>
-							<%-- <a href="${prc }/index.shtml" class="btn btn-primary">立即下单</a> --%>
-						
-						</div>
+					</div>
+					</div>
 					</div>
 			</div>
 
-			
-						<form id="subForm" action="${prc}/order/addOrder.shtml" method="post">
-							<input type="text" name="shippingId" value="${shipping.id }" />
-							<input type="text" name="payment" value="${buyCart.totalPrice }" />
-							<input type="text" name="paymentType" value="1" />
-							<input type="text" name="postage" value="0" />
-							<input type="text" name="status" value="10" />
-						</form>
 
 		</div>
 		<!-- 禮品卡提示 S-->
@@ -353,10 +195,6 @@
 
 
 
-		<script src="js/base.min.js"></script>
-
-		<script type="text/javascript" src="js/address_all.js"></script>
-		<script type="text/javascript" src="js/checkout.min.js"></script>
 	</div>
 	<!--收货地址body部分结束-->
 </div>

@@ -810,8 +810,11 @@ a:hover,a:focus {
 	font-size:14px
 }
 .xm-plain-box .box-bd {
+	width: 600px;
 	border:1px solid #dfdfdf;
-	background:#fff
+	background:#fff;
+	float: left;
+
 }
 .xm-plain-box .box-ft {
 	border-top:1px solid #dfdfdf

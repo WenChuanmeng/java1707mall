@@ -64,13 +64,15 @@ public class CartController {
 						}
 					}
 				}
-				
-		List<CartItem> items = buyCart.getCartItems();
-		for (CartItem cartItem : items) {
-			Product product = productService.findById(cartItem.getProduct().getId());
-			cartItem.setProduct(product);
+		if (null != buyCart) {
+			List<CartItem> items = buyCart.getCartItems();
+			for (CartItem cartItem : items) {
+				Product product = productService.findById(cartItem.getProduct().getId());
+				cartItem.setProduct(product);
+			}
+			model.addAttribute("buyCart", buyCart);
 		}
-		model.addAttribute("buyCart", buyCart);
+		
 		return "cart";
 	}
 	
