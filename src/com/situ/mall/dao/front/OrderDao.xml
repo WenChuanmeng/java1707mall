@@ -20,8 +20,8 @@
 		<result column="current_unit_price" property="currentUnitPrice"/>
 		<result column="quantity" property="quantity"/>
 		<result column="total_price" property="totalPrice"/>
-		<result column="pcreate_time" property="createTime" javaType="java.sql.Date" jdbcType="DATE" />
-		<result column="pupdate_time" property="updateTime" javaType="java.sql.Date" jdbcType="DATE" />
+		<result column="create_time" property="createTime" javaType="java.sql.Date" jdbcType="DATE" />
+		<result column="update_time" property="updateTime" javaType="java.sql.Date" jdbcType="DATE" />
 	</resultMap>
 
 	<!-- 添加订单 -->

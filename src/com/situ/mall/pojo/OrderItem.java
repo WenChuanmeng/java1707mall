@@ -17,8 +17,8 @@ public class OrderItem implements Serializable{
 	private BigDecimal currentUnitPrice;//生成订单时的商品单价，单位是元,保留两位小数
 	private int quantity;//商品数量
 	private BigDecimal totalPrice;//商品总价,单位是元,保留两位小数
-	private Date createTimedatetime;//
-	private Date update_timedatetime;//
+	private Date createTime;//
+	private Date updateTime;//
 	
 	public OrderItem() {
 		super();
@@ -26,8 +26,8 @@ public class OrderItem implements Serializable{
 	}
 
 	public OrderItem(Integer id, Integer userId, Long orderNo, Integer productId, String productName,
-			String productImage, BigDecimal currentUnitPrice, int quantity, BigDecimal totalPrice,
-			Date createTimedatetime, Date update_timedatetime) {
+			String productImage, BigDecimal currentUnitPrice, int quantity, BigDecimal totalPrice, Date createTime,
+			Date updateTime) {
 		super();
 		this.id = id;
 		this.userId = userId;
@@ -38,8 +38,8 @@ public class OrderItem implements Serializable{
 		this.currentUnitPrice = currentUnitPrice;
 		this.quantity = quantity;
 		this.totalPrice = totalPrice;
-		this.createTimedatetime = createTimedatetime;
-		this.update_timedatetime = update_timedatetime;
+		this.createTime = createTime;
+		this.updateTime = updateTime;
 	}
 
 	/**
@@ -106,17 +106,17 @@ public class OrderItem implements Serializable{
 	}
 
 	/**
-	 * @return the createTimedatetime
+	 * @return the createTime
 	 */
-	public Date getCreateTimedatetime() {
-		return createTimedatetime;
+	public Date getCreateTime() {
+		return createTime;
 	}
 
 	/**
-	 * @return the update_timedatetime
+	 * @return the updateTime
 	 */
-	public Date getUpdate_timedatetime() {
-		return update_timedatetime;
+	public Date getUpdateTime() {
+		return updateTime;
 	}
 
 	/**
@@ -183,17 +183,17 @@ public class OrderItem implements Serializable{
 	}
 
 	/**
-	 * @param createTimedatetime the createTimedatetime to set
+	 * @param createTime the createTime to set
 	 */
-	public void setCreateTimedatetime(Date createTimedatetime) {
-		this.createTimedatetime = createTimedatetime;
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 
 	/**
-	 * @param update_timedatetime the update_timedatetime to set
+	 * @param updateTime the updateTime to set
 	 */
-	public void setUpdate_timedatetime(Date update_timedatetime) {
-		this.update_timedatetime = update_timedatetime;
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
 
 	/* (non-Javadoc)
@@ -203,9 +203,11 @@ public class OrderItem implements Serializable{
 	public String toString() {
 		return "OrderItem [id=" + id + ", userId=" + userId + ", orderNo=" + orderNo + ", productId=" + productId
 				+ ", productName=" + productName + ", productImage=" + productImage + ", currentUnitPrice="
-				+ currentUnitPrice + ", quantity=" + quantity + ", totalPrice=" + totalPrice + ", createTimedatetime="
-				+ createTimedatetime + ", update_timedatetime=" + update_timedatetime + "]";
+				+ currentUnitPrice + ", quantity=" + quantity + ", totalPrice=" + totalPrice + ", createTime="
+				+ createTime + ", updateTime=" + updateTime + "]";
 	}
 
+	
+	
 	
 }

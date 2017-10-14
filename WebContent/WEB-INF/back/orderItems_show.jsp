@@ -25,11 +25,6 @@
 	}
 </style>
 	
-<script type="text/javascript">
-	function findOrderItems(orderNo) {
-		window.location.href="${prc}/orderManager/findOrderItems.action?orderNo=" + orderNo;
-	}
-</script>  
 </head>
 <body>
 <input id="PageContext" type="hidden" value="${pageContext.request.contextPath}">
@@ -72,55 +67,37 @@
 							<td>
 								<input type="checkbox" id="selectAlls" onclick="selectAll()" />
 							</td>
-							<td>订单ID</td>
-							<td title="订单号">订单号</td>
 							<td>用户ID</td>
-							<td>实付金额</td>
-							<td>支付类型</td>
-							<td>运费</td>
-							<td>订单状态</td>
+							<td title="订单号">订单号</td>
+							<td>商品ID</td>
+							<td>商品名称</td>
+							<td>图片</td>
+							<td>商品单价</td>
+							<td>商品数量</td>
+							<td>总金额</td>
 							<td>创建时间</td>
 							<td>更新时间</td>
-							<td>查看订单</td>
 							<td>删除</td>
 							<td>修改</td>
 						</tr>
-						<c:forEach items="${pageBean.list }" var="order">
+						<c:forEach items="${pageBean.list }" var="orderItem">
 							<tr>
 								<td>
 								<input type="checkbox" id="selectAlls" name="selectIds" value="${product.id }" />
 								<input type="hidden" id="statusId" name="statusIds" value="${product.status}" />
 								</td>
-								<td title="${order.id }">${order.id }</td>
-								<td title="${order.orderNo }">${order.orderNo }</td>
-								<td style="width: 100px;" title="${order.userId }" >${order.userId }</td>
-								<td title="${order. payment}">${order. payment}</td>
-								<td >${order.paymentType }</td>
-								<td>${order.postage }</td>
-								<td>
-									<c:if test="${order.status == 0 }">
-										订单已取消
-									</c:if>
-									<c:if test="${order.status == 10 }">
-										未付款
-									</c:if>
-									<c:if test="${order.status == 20 }">
-										已付款
-									</c:if>
-									<c:if test="${order.status == 40 }">
-										已发货
-									</c:if>
-									<c:if test="${order.status == 50 }">
-										交易成功
-									</c:if>
-									<c:if test="${order.status == 60 }">
-										交易关闭
-									</c:if>
-									
+								<td style="width: 100px;" title="${orderItem.userId }" >${orderItem.userId }</td>
+								<td title="${orderItem.orderNo }">${orderItem.orderNo }</td>
+								<td title="${orderItem. productId}">${orderItem. productId}</td>
+								<td title="${orderItem. productName}">${orderItem. productName}</td>
+								<td title="${orderItem. productImage}">
+									<img alt="" width="50px" height="50px" src="/pic/${orderItem. productImage}">
 								</td>
-								<td title="${order.createTime }">${order.createTime }</td>
-				 				<td title="${order.updateTime }">${order.updateTime }</td>
-								<td><span class="glyphicon glyphicon-list-alt" onclick="findOrderItems(${order.orderNo });"></span></td>
+								<td title="${orderItem. currentUnitPrice}">${orderItem. currentUnitPrice}</td>
+								<td title="${orderItem. quantity}">${orderItem. quantity}</td>
+								<td title="${orderItem. totalPrice}">${orderItem. totalPrice}</td>
+								<td title="${orderItem.createTime }">${orderItem.createTime }</td>
+				 				<td title="${orderItem.updateTime }">${orderItem.updateTime }</td>
 								<td><span class="glyphicon glyphicon-trash" onclick="delProduct(${product.id })" ></span></td>
 								<td><span class="glyphicon glyphicon-pencil" onclick="update(${product.id})" ></span></td>
 							</tr>

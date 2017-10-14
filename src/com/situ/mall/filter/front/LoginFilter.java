@@ -30,7 +30,7 @@ public class LoginFilter implements Filter {
 		HttpServletResponse resp = (HttpServletResponse) response;
 		
 		String requestURI = req.getRequestURI();
-		if (requestURI != null && requestURI.startsWith("/Java1707Mall/order")) {
+		if (requestURI != null && requestURI.startsWith("/Java1707Mall/order/")) {
 			HttpSession session = req.getSession(false);
 			if (null != session) {
 				User user = (User) session.getAttribute("user");

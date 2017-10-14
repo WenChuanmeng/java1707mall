@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.situ.mall.dao.back.OrderManagerDao;
 import com.situ.mall.pojo.Order;
+import com.situ.mall.pojo.OrderItem;
 import com.situ.mall.service.back.IOrderManagerService;
 import com.situ.mall.vo.PageBean;
 
@@ -25,7 +26,24 @@ public class OrderManagerServiceImpl implements IOrderManagerService {
 		int totalPage = (int) Math.ceil(1.0 * totalSize / pageSize);
 		pageBean.setTotalSize(totalSize);
 		pageBean.setTotalPage(totalPage);
+		pageIndex = (pageIndex - 1) * pageSize;
 		List<Order> list = orderManagerDao.pageList(pageIndex, pageSize);
+		pageBean.setList(list);
+		return pageBean;
+	}
+	
+	@Override
+	public PageBean<OrderItem> findOrderItems(Long orderNo, Integer pageIndex, Integer pageSize) {
+		
+		PageBean<OrderItem> pageBean = new PageBean<OrderItem>();
+		pageBean.setPageIndex(pageIndex);
+		pageBean.setPageSize(pageSize);
+		int totalSize = orderManagerDao.totalSizeByOrderNo(orderNo);
+		int totalPage = (int) Math.ceil(1.0 * totalSize / pageSize);
+		pageBean.setTotalSize(totalSize);
+		pageBean.setTotalPage(totalPage);
+		pageIndex = (pageIndex - 1) * pageSize;
+		List<OrderItem> list = orderManagerDao.pageListByOrderNo(orderNo, pageIndex, pageSize);
 		pageBean.setList(list);
 		return pageBean;
 	}

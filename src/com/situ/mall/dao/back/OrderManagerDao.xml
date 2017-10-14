@@ -44,8 +44,8 @@
 		<result column="current_unit_price" property="currentUnitPrice"/>
 		<result column="quantity" property="quantity"/>
 		<result column="total_price" property="totalPrice"/>
-		<result column="pcreate_time" property="createTime" javaType="java.sql.Date" jdbcType="DATE" />
-		<result column="pupdate_time" property="updateTime" javaType="java.sql.Date" jdbcType="DATE" />
+		<result column="create_time" property="createTime" javaType="java.sql.Date" jdbcType="DATE" />
+		<result column="update_time" property="updateTime" javaType="java.sql.Date" jdbcType="DATE" />
 	</resultMap>
 
 
@@ -56,7 +56,18 @@
 	
 	<!-- 对订单进行分页 -->
 	<select id="pageList" parameterType="int" resultMap="ordersMap">
-		select <include refid="ordersColums"/> from orders;
+		select <include refid="ordersColums"/> from orders limit #{pageIndex},#{pageSize};
+	</select>
+	
+	<!-- 根据订单号查询订单项的数量 -->
+	<select id="totalSizeByOrderNo"  resultType="int">
+		select count(*) from order_item where order_no=#{0};
+	</select>
+	
+	<!-- 根据订单号查询订单项 -->
+	<select id="pageListByOrderNo"  resultMap="orderItemMap">
+		select <include refid="orderItemColums"/> from order_item where order_no=#{0} 
+		limit #{1},#{2};
 	</select>
 
 </mapper>
