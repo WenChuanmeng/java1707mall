@@ -122,4 +122,9 @@
 		 where id=#{id}
 	</update>
 	
+	<!-- 查询所有商品 -->
+	<select id="findAllByJson" resultMap="productMap">
+		select <include refid="productColums"/> FROM product AS p LEFT JOIN category AS c ON p.category_id=c.id;
+	</select>
+	
 </mapper>

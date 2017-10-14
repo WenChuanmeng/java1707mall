@@ -1,4 +1,23 @@
 
+/*添加商品*/
+function subForm() {
+	var options = {
+		url : urlPRC + "/product/addProductByJson.action",
+		type : "post",
+		datatype : "json",
+		data : $("#form-add").serialize(),
+		success : function (data) {
+			if (data.status == 0) {
+				alert(data.msg);
+			} else {
+				alert(data.msg);
+			}
+		}
+	};
+	
+	$.ajax(options);
+}
+
 /* 上传图片  */
 function uploadPic() {
 		var options={

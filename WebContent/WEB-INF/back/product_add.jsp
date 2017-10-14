@@ -26,7 +26,6 @@
 	</style>
 <script type="text/javascript">
 	var urlPRC="${pageContext.request.contextPath}";
-	
 </script>
 <script type="text/javascript" src="${prc }/resources/js/product-add-js.js"></script>
 </head>
@@ -106,7 +105,7 @@
 				   	 </div>
 				 	
 				 	
-				  <button type="submit" class="btn btn-primary">Submit</button>
+				  <button type="button" onclick="subForm()" class="btn btn-primary">Submit</button>
 				  </div>
 				</form>
 				<!-- 添加学生 结束 -->

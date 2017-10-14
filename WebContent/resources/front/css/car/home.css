@@ -221,6 +221,8 @@ em {
 	margin-right:5px;
 	margin-bottom:8px
 }
+
+
 .xm-edit-addr-box .bd .item .select-1,.xm-edit-addr-box .bd .item .select-2 {
 	width:124px
 }
@@ -285,9 +287,6 @@ em {
 	cursor:pointer;
 	white-space:nowrap
 }
-.checkout-option-list li:hover {
-	background:#f3f3f3
-}
 .checkout-option-list li input {
 	display:none
 }
@@ -300,12 +299,29 @@ em {
 	color:#6d6d6d;
 	font-size:12px
 }
-.checkout-option-list .selected {
+#weixin{
 	border-color:#ff4646;
-	background:#fff
+	background-image: url("../../img/zhifubywx.png");
+	background-repeat: no-repeat;
+	background-size: 20px 20px;
+	padding-left: 27px;
+	background-position: 2% center;
 }
-.checkout-option-list .selected:hover {
-	background:#fff
+#zhifubao{
+	border-color:#ff4646;
+	background-image: url("../../img/zhifubyzfb.png");
+	background-repeat: no-repeat;
+	background-size: 20px 20px;
+	padding-left: 27px;
+	background-position: 2% center;
+}
+#bank{
+	border-color:#ff4646;
+	background-image: url("../../img/zhifubybank.jpg");
+	background-repeat: no-repeat;
+	background-size: 20px 20px;
+	padding-left: 27px;
+	background-position: 2% center;
 }
 .e-invoice-tip {
 	margin-top:10px;
@@ -1089,3 +1105,4 @@ em {
 	height:200px
 }
 }
+

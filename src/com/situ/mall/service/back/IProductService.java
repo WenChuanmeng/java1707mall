@@ -1,7 +1,9 @@
 package com.situ.mall.service.back;
 
+import java.util.List;
 import java.util.Map;
 
+import com.situ.mall.common.ServerResponse;
 import com.situ.mall.pojo.Product;
 import com.situ.mall.vo.FindByCondition;
 import com.situ.mall.vo.PageBean;
@@ -72,6 +74,18 @@ public interface IProductService {
 	 * @return boolean
 	 */
 	public boolean updateAllStatus(Map<Integer, Integer> map);
+
+	/**
+	 * 查询所有商品返回json
+	 * @return ServerResponse<List<Product>>
+	 */
+	public ServerResponse<List<Product>> findAllByJson();
+
+	/**
+	 * 添加商品返回json
+	 * @return ServerResponse<List<Product>>
+	 */
+	public ServerResponse addProductByJson(Product product);
 	
 
 }

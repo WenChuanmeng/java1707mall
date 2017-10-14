@@ -73,4 +73,10 @@ public interface ProductDao {
 	 */
 	int updateProduct(Product product);
 
+	/**
+	 * 查询所有商品返回json
+	 * @return ServerResponse<List<Product>>
+	 */
+	List<Product> findAllByJson();
+
 }

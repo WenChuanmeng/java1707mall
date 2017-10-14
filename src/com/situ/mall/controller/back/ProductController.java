@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.situ.mall.common.ServerResponse;
 import com.situ.mall.pojo.Category;
 import com.situ.mall.pojo.Product;
 import com.situ.mall.service.back.ICategoryService;
@@ -44,6 +45,12 @@ public class ProductController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(
                 new SimpleDateFormat("yyyy-MM-dd"), true));
     }
+	//查找所有的商品
+	@RequestMapping("/findAllByJson")
+	@ResponseBody
+	private ServerResponse<List<Product>> findAllByJson() {
+		return productService.findAllByJson();
+	}
 	
 	//实现分页
 	@RequestMapping("/pageList")
@@ -89,6 +96,15 @@ public class ProductController {
 		
 		productService.addProduct(product);
 		return "redirect:pageList.action";
+	}
+	
+	//添加商品
+	@RequestMapping("/addProductByJson")
+	@ResponseBody
+	private ServerResponse addProductByJson(Product product) {
+		
+		
+		return productService.addProductByJson(product);
 	}
 	
 	//删除商品

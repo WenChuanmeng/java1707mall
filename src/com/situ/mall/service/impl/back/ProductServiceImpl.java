@@ -5,7 +5,9 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.situ.mall.common.ServerResponse;
 import com.situ.mall.dao.back.ProductDao;
 import com.situ.mall.pojo.Product;
 import com.situ.mall.service.back.IProductService;
@@ -123,6 +125,24 @@ public class ProductServiceImpl implements IProductService {
 			result += result;
 		}
 		return result > 0 ? true : false;
+	}
+
+	@Override
+	@ResponseBody
+	public ServerResponse<List<Product>> findAllByJson() {
+		List<Product> list = productDao.findAllByJson();
+		return ServerResponse.createSuccess("查询成功", list);
+	}
+
+	@Override
+	@ResponseBody
+	public ServerResponse addProductByJson(Product product) {
+		int result = productDao.addProduct(product);
+		if (result > 0) {
+			return ServerResponse.createSuccess("添加成功");
+		} else {
+			return ServerResponse.createError("添加失败");
+		}
 	}
 
 }

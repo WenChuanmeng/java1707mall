@@ -39,6 +39,8 @@
 				window.location.href="${prc}/cart/delCart.shtml?productId="+productId;
 			}
 		}
+		
+		
 	</script>
 
 	<body>

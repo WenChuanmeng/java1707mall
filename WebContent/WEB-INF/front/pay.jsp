@@ -30,7 +30,7 @@
 						<!-- 地址状态 0：默认选择；1：新增地址；2：修改地址 -->
 						<input type="hidden" name="Checkout[addressState]" id="addrState"   value="0">
 						<!-- 收货地址 -->
-						<div class="xm-box">
+						<%-- <div class="xm-box">
 							<div class="box-hd ">
 								<h2 class="title">收货地址</h2>
 								<!---->
@@ -54,7 +54,7 @@
 								</div>
 								<div class="xm-edit-addr-backdrop" id="J_editAddrBackdrop"></div>
 							</div>                
-						</div>
+						</div> --%>
 						<div id="checkoutPayment">
 							<!-- 支付方式 -->
 							<div class="xm-box">
@@ -63,19 +63,19 @@
 								</div>
 								<div class="box-bd">
 									<ul id="checkoutPaymentList" class="checkout-option-list clearfix J_optionList">
-										<li class="item selected">
+										<li class="item selected" id="weixin" >
 											<input type="radio" name="Checkout[pay_id]" checked="checked" value="1">
-											<p>
+											<p >
 												<span>微信支付</span>
 											</p>
 										</li>
-										<li class="item selected">
+										<li class="item selected" id="zhifubao">
 											<input type="radio" name="Checkout[pay_id]" checked="checked" value="1">
 											<p>
 												<span>支付宝支付</span>
 											</p>
 										</li>
-										<li class="item selected">
+										<li class="item selected" id="bank">
 											<input type="radio" name="Checkout[pay_id]" checked="checked" value="1">
 											<p>
 												<span>银行卡支付</span>

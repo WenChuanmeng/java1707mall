@@ -110,7 +110,7 @@ public class OrderController {
 
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
-		orderNo = System.currentTimeMillis();
+		orderNo = System.currentTimeMillis();//生成订单号
 		order.setOrderNo(orderNo);
 		System.out.println(order);
 		order.setUserId(user.getId());
