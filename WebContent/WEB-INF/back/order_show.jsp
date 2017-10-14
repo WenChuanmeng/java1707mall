@@ -39,7 +39,7 @@
 			<!-- 左边导航栏开始  -->
 			<div class="col-md-2" >
 				<ul class="nav nav-pills nav-stacked">
-					<li role="presentation" class="active"><a href="javascript:void(0)">商品管理</a></li>
+					<li role="presentation" class="active"><a href="javascript:void(0)">订单管理</a></li>
 				    <li role="presentation"><a href="${prc }/product/toAddProduct.action">添加商品</a></li>
 				</ul>
 			</div>
@@ -47,7 +47,7 @@
 			<!-- 右边栏开始  -->
 			<div class="col-md-10">
 				<ul class="nav nav-tabs">
-					<li role="presentation" class="active"><a href="javascript:void(0)">商品管理</a></li>
+					<li role="presentation" class="active"><a href="javascript:void(0)">订单管理</a></li>
 				    <li role="presentation"><a href="${prc }/product/toAddProduct.action">添加商品</a></li>
 				</ul>
 				<!-- 查询条件 开始 -->
@@ -71,43 +71,54 @@
 							<td>
 								<input type="checkbox" id="selectAlls" onclick="selectAll()" />
 							</td>
-							<td>分类</td>
-							<td title="商品名称">商品名称</td>
-							<td>副标题</td>
-							<td>价格</td>
-							<td>库存</td>
-							<td>状态</td>
-							<td>主图</td>
+							<td>订单ID</td>
+							<td title="订单号">订单号</td>
+							<td>用户ID</td>
+							<td>实付金额</td>
+							<td>支付类型</td>
+							<td>运费</td>
+							<td>订单状态</td>
 							<td>创建时间</td>
 							<td>更新时间</td>
-							<td>修改状态</td>
+							<td>查看订单</td>
 							<td>删除</td>
 							<td>修改</td>
 						</tr>
-						<c:forEach items="${pageBean.list }" var="product">
+						<c:forEach items="${pageBean.list }" var="order">
 							<tr>
 								<td>
 								<input type="checkbox" id="selectAlls" name="selectIds" value="${product.id }" />
 								<input type="hidden" id="statusId" name="statusIds" value="${product.status}" />
 								</td>
-								<td title="${product.category.name }">${product.category.name }</td>
-								<td style="width: 100px;" title="${product.name }" >${product.name }</td>
-								<td title="${product. subtitle}">${product. subtitle}</td>
-								<td >${product.price }</td>
-								<td>${product.stock }</td>
+								<td title="${order.id }">${order.id }</td>
+								<td title="${order.orderNo }">${order.orderNo }</td>
+								<td style="width: 100px;" title="${order.userId }" >${order.userId }</td>
+								<td title="${order. payment}">${order. payment}</td>
+								<td >${order.paymentType }</td>
+								<td>${order.postage }</td>
 								<td>
-									<c:if test="${product.status == 1 }">
-										在售
+									<c:if test="${order.status == 0 }">
+										订单已取消
 									</c:if>
-									<c:if test="${product.status == 2 }">
-										下架
+									<c:if test="${order.status == 10 }">
+										未付款
 									</c:if>
+									<c:if test="${order.status == 20 }">
+										已付款
+									</c:if>
+									<c:if test="${order.status == 40 }">
+										已发货
+									</c:if>
+									<c:if test="${order.status == 50 }">
+										交易成功
+									</c:if>
+									<c:if test="${order.status == 60 }">
+										交易关闭
+									</c:if>
+									
 								</td>
-								<td>
-									<img alt="无图" id="imgId" src="${product.fullUrl }" width="50px" height="50px" >
-								</td>
-								<td title="${product.createTime }">${product.createTime }</td>
-				 				<td title="${product.updateTime }">${product.updateTime }</td>
+								<td title="${order.createTime }">${order.createTime }</td>
+				 				<td title="${order.updateTime }">${order.updateTime }</td>
 								<td><span class="glyphicon glyphicon-retweet" onclick="updateStatus(${product.id },${product.status });"></span></td>
 								<td><span class="glyphicon glyphicon-trash" onclick="delProduct(${product.id })" ></span></td>
 								<td><span class="glyphicon glyphicon-pencil" onclick="update(${product.id})" ></span></td>

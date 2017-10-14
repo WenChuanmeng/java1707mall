@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.situ.mall.dao.back.OrderManagerDao">
+
+	<!-- ordersColums -->
+	<sql id="ordersColums">
+		id,order_no,user_id,shipping_id,payment,payment_type,postage,status,
+		payment_time,send_time,end_time,close_time,create_time,update_time
+	</sql>
+	
+	<!-- ordersMap -->
+	<resultMap type="order" id="ordersMap">
+		<id column="id" property="id" />
+		<result column="order_no" property="orderNo" />
+		<result column="user_id" property="userId" />
+		<result column="shipping_id" property="shippingId" />
+		<result column="payment" property="payment" />
+		<result column="payment_type" property="paymentType" />
+		<result column="postage" property="postage" />
+		<result column="status" property="status" />
+		<result column="payment_time" property="paymentTime" javaType="java.sql.Date" jdbcType="DATE"/>
+		<result column="send_time" property="sendTime" javaType="java.sql.Date" jdbcType="DATE"/>
+		<result column="end_time" property="endTime" javaType="java.sql.Date" jdbcType="DATE"/>
+		<result column="close_time" property="closeTime" javaType="java.sql.Date" jdbcType="DATE"/>
+		<result column="create_time" property="createTime" javaType="java.sql.Date" jdbcType="DATE"/>
+		<result column="update_time" property="updateTime" javaType="java.sql.Date" jdbcType="DATE"/>
+	</resultMap>
+	
+	<!-- order_itemColums -->
+	<sql id="orderItemColums">
+		id,user_id,order_no,product_id,product_name,product_image,current_unit_price,quantity,total_price,create_time,update_time
+	</sql>
+	
+	<!--order_itemMap  -->
+	<resultMap type="OrderItem" id="orderItemMap">
+		<id column="id" property="id" />
+		<result column="user_id" property="userId"/>
+		<result column="order_no" property="orderNo"/>
+		<result column="product_id" property="productId"/>
+		<result column="product_name" property="productName"/>
+		<result column="product_image" property="productImage"/>
+		<result column="current_unit_price" property="currentUnitPrice"/>
+		<result column="quantity" property="quantity"/>
+		<result column="total_price" property="totalPrice"/>
+		<result column="pcreate_time" property="createTime" javaType="java.sql.Date" jdbcType="DATE" />
+		<result column="pupdate_time" property="updateTime" javaType="java.sql.Date" jdbcType="DATE" />
+	</resultMap>
+
+
+	<!-- 查询订单的数量 -->
+	<select id="totalSize" resultType="int">
+		select count(*) from orders;
+	</select>
+	
+	<!-- 对订单进行分页 -->
+	<select id="pageList" parameterType="int" resultMap="ordersMap">
+		select <include refid="ordersColums"/> from orders;
+	</select>
+
+</mapper>
