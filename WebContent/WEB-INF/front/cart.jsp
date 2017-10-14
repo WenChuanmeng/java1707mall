@@ -40,7 +40,20 @@
 			}
 		}
 		
-		
+		/* 立即结算  */
+		function subOrder() {
+			
+			var cartItems =" ${buyCart.productId }";
+			if( cartItems != " ") {
+				window.location.href="${prc }/order/order.shtml";
+			} else {
+				var isTurn = confirm("购物车没有物品，先添加商品后再结算吧！");
+				if (isTurn) {
+					window.location.href="${prc }/index.shtml";
+				}
+			}
+				
+		}
 	</script>
 
 	<body>
@@ -159,7 +172,7 @@
 					</li>
 					<li style="margin-left: 8px;margin-right: 265px;">全选</li>
 					<li style="margin-left: 242px;margin-right: 18px;">总金额（已免运费）：<span style="color: #F41443;">¥${buyCart.totalPrice }</span></li>
-					<li class="total_right"><a href="${prc }/order/order.shtml">立即结算</a></li>
+					<li class="total_right"><a onclick="subOrder();" >立即结算</a></li>
 				</ul>
 			</div>
 					<div class="sp">
