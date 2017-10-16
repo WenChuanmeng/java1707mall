@@ -10,7 +10,7 @@
 	<meta name="Description" content="">
 	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
 	<meta name="renderer" content="webkit">
-	<title>确认订单</title>
+	<title>确认付款</title>
 	<%@ include file="common/head.jsp" %>
 	<%@ include file="common/logo.jsp" %>
 	<link rel="stylesheet" type="text/css" href="${prc }/resources/front/css/order.css">
@@ -63,24 +63,30 @@
 								</div>
 								<div class="box-bd">
 									<ul id="checkoutPaymentList" class="checkout-option-list clearfix J_optionList">
-										<li class="item selected" id="weixin" >
-											<input type="radio" name="Checkout[pay_id]" checked="checked" value="1">
-											<p >
-												<span>微信支付</span>
-											</p>
-										</li>
+										<label for="wx">
+											<li class="item selected" id="weixin" >
+												<input id="wx" type="radio" name="Checkout[pay_id]" checked="checked" value="1">
+												<p >
+													<span>微信支付</span>
+												</p>
+											</li>
+										</label>
+										<label for="zfb">
 										<li class="item selected" id="zhifubao">
-											<input type="radio" name="Checkout[pay_id]" checked="checked" value="1">
+											<input id="zfb" type="radio" name="Checkout[pay_id]" checked="checked" value="1">
 											<p>
 												<span>支付宝支付</span>
 											</p>
 										</li>
-										<li class="item selected" id="bank">
-											<input type="radio" name="Checkout[pay_id]" checked="checked" value="1">
-											<p>
-												<span>银行卡支付</span>
-											</p>
-										</li>
+										</label>
+										<label for="bankIDd" >
+											<li class="item selected" id="bank">
+												<input id="bankID" type="radio" name="Checkout[pay_id]" checked="checked" value="1">
+												<p>
+													<span>银行卡支付</span>
+												</p>
+											</li>
+										</label>
 									</ul>
 								</div>
 							</div>
@@ -101,7 +107,7 @@
 													订单总额：<span>${totalPrice }元</span>
 												</li>
 											</ul>
-											<button style="float: right;"  class="btn btn-primary">立即下单</button>
+											<button style="float: right;"  class="btn btn-primary">支付</button>
 										</div>
 										<!--  -->
 									</div>

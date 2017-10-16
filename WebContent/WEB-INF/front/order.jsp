@@ -34,7 +34,14 @@
 				 $("#subForm").submit();
 			}
 		}
-		$("")
+		/*  */
+		/* $(function () {
+			$(".xm-box .item").click(function() {
+				var n;
+				n = $(this).index();
+				alert(n);
+			});
+		}); */
 	</script>
 </head>
 <body>
@@ -47,7 +54,6 @@
 			<div class="checkout-box">
 					<div class="checkout-box-bd">
 						<!-- 地址状态 0：默认选择；1：新增地址；2：修改地址 -->
-						<input type="hidden" name="Checkout[addressState]" id="addrState"   value="0">
 						<!-- 收货地址 -->
 						<div class="xm-box">
 							<div class="box-hd ">
@@ -55,8 +61,6 @@
 								<!---->
 							</div>
 							<div class="box-bd">
-								
-								
 								<div class="clearfix xm-address-list" id="checkoutAddrList">
 									<c:forEach items="${list }" var="shipping">
 										<label for="address${shipping.id }">

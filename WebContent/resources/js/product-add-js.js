@@ -7,10 +7,24 @@ function subForm() {
 		datatype : "json",
 		data : $("#form-add").serialize(),
 		success : function (data) {
-			if (data.status == 0) {
+			/*if (data.status == 0) {
 				alert(data.msg);
 			} else {
 				alert(data.msg);
+			}*/
+			if (data.status == 0) {
+				layer.confirm(
+						"添加成功", 
+						{btn:['关闭','跳转到列表界面']}, 
+						function(index){
+							layer.close(index)
+						},
+						function () {
+							window.location.href= urlPRC + "/product/pageList.action"
+						}
+					);
+			} else {
+				layer.msg("添加失败");
 			}
 		}
 	};

@@ -10,6 +10,7 @@
 		<link rel="stylesheet" type="text/css" href="${prc }/resources/thrLib/kindeditor/themes/default/default.css" />
 	<script  type="text/javascript" src="${prc }/resources/thrLib/kindeditor/kindeditor-all-min.js" /></script>
 	<script type="text/javascript" src="${prc }/resources/thrLib/kindeditor/lang/zh_CN.js"></script>
+	<script type="text/javascript" src="${prc }/resources/layer/layer.js"></script>
 	<!-- head end -->
 	<style type="text/css">
 		#categoryParentId,#categoryChildId{
