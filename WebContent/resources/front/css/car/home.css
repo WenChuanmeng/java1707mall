@@ -288,7 +288,7 @@ em {
 	white-space:nowrap
 }
 .checkout-option-list li input {
-	display:none
+	/* display:none */
 }
 .checkout-option-list li p {
 	color:#333

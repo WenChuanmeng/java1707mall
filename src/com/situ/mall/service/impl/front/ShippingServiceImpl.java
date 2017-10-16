@@ -1,5 +1,7 @@
 package com.situ.mall.service.impl.front;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +17,7 @@ public class ShippingServiceImpl implements IShippingService {
 	private ShippingDao shipingDao;
 	
 	@Override
-	public Shipping findById(Integer userId) {
+	public List<Shipping> findById(Integer userId) {
 
 		return shipingDao.findById(userId);
 	}

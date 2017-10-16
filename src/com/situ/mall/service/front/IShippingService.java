@@ -1,5 +1,7 @@
 package com.situ.mall.service.front;
 
+import java.util.List;
+
 import com.situ.mall.pojo.Shipping;
 
 public interface IShippingService {
@@ -7,8 +9,8 @@ public interface IShippingService {
 	/**
 	 * 根据id查找shiping表。查询user信息
 	 * @param userId
-	 * @return User
+	 * @return List<Shipping>
 	 */
-	Shipping findById(Integer userId);
+	List<Shipping> findById(Integer userId);
 
 }

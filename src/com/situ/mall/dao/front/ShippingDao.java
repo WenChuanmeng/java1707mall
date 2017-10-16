@@ -1,5 +1,7 @@
 package com.situ.mall.dao.front;
 
+import java.util.List;
+
 import com.situ.mall.pojo.Shipping;
 
 public interface ShippingDao {
@@ -9,6 +11,6 @@ public interface ShippingDao {
 	 * @param userId
 	 * @return Shipping
 	 */
-	Shipping findById(Integer userId);
+	List<Shipping> findById(Integer userId);
 
 }

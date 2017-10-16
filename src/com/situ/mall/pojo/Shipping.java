@@ -20,6 +20,8 @@ public class Shipping implements Serializable {
 	//城市
 	private String receiverCity;
 	//区/县
+	private String receiverDistrict;
+	//详细地址
 	private String receiverAddress;
 	//邮编
 	private String receiverZip;
@@ -34,8 +36,8 @@ public class Shipping implements Serializable {
 	}
 
 	public Shipping(Integer id, Integer userId, String receiverName, String receiverPhone, String receiverMobile,
-			String receiverProvince, String receiverCity, String receiverAddress, String receiverZip, Date createTime,
-			Date updateTime) {
+			String receiverProvince, String receiverCity, String receiverDistrict, String receiverAddress,
+			String receiverZip, Date createTime, Date updateTime) {
 		super();
 		this.id = id;
 		this.userId = userId;
@@ -44,6 +46,7 @@ public class Shipping implements Serializable {
 		this.receiverMobile = receiverMobile;
 		this.receiverProvince = receiverProvince;
 		this.receiverCity = receiverCity;
+		this.receiverDistrict = receiverDistrict;
 		this.receiverAddress = receiverAddress;
 		this.receiverZip = receiverZip;
 		this.createTime = createTime;
@@ -97,6 +100,13 @@ public class Shipping implements Serializable {
 	 */
 	public String getReceiverCity() {
 		return receiverCity;
+	}
+
+	/**
+	 * @return the receiverDistrict
+	 */
+	public String getReceiverDistrict() {
+		return receiverDistrict;
 	}
 
 	/**
@@ -177,6 +187,13 @@ public class Shipping implements Serializable {
 	}
 
 	/**
+	 * @param receiverDistrict the receiverDistrict to set
+	 */
+	public void setReceiverDistrict(String receiverDistrict) {
+		this.receiverDistrict = receiverDistrict;
+	}
+
+	/**
 	 * @param receiverAddress the receiverAddress to set
 	 */
 	public void setReceiverAddress(String receiverAddress) {
@@ -211,9 +228,12 @@ public class Shipping implements Serializable {
 	public String toString() {
 		return "Shipping [id=" + id + ", userId=" + userId + ", receiverName=" + receiverName + ", receiverPhone="
 				+ receiverPhone + ", receiverMobile=" + receiverMobile + ", receiverProvince=" + receiverProvince
-				+ ", receiverCity=" + receiverCity + ", receiverAddress=" + receiverAddress + ", receiverZip="
-				+ receiverZip + ", createTime=" + createTime + ", updateTime=" + updateTime + "]";
+				+ ", receiverCity=" + receiverCity + ", receiverDistrict=" + receiverDistrict + ", receiverAddress="
+				+ receiverAddress + ", receiverZip=" + receiverZip + ", createTime=" + createTime + ", updateTime="
+				+ updateTime + "]";
 	}
+
+	
 	
 	
 }

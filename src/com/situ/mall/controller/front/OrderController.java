@@ -57,8 +57,8 @@ public class OrderController {
 		HttpSession session = request.getSession();
 		User userTemp = (User) session.getAttribute("user");
 		Integer userId = userTemp.getId();
-		Shipping shipping = shippingService.findById(userId);
-		model.addAttribute("shipping", shipping);
+		List<Shipping> list = shippingService.findById(userId);
+		model.addAttribute("list", list);
 		
 		ObjectMapper objectMapper = new ObjectMapper();
 		
@@ -198,5 +198,14 @@ public class OrderController {
 		OrderController.orderNo = orderNo;
 	}
 	
-	
+	//查看我的订单
+	@RequestMapping("/myOrder")
+	private String myOrder(Model model, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		List<Order> list =  orderService.findOrderByUserId(user.getId());
+		model.addAttribute("list", list);
+		return "my_order";
+	}
 }

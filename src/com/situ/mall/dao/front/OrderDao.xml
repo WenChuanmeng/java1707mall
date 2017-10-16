@@ -9,6 +9,13 @@
 		id,user_id,order_no,product_id,product_name,product_image,current_unit_price,quantity,total_price,create_time,update_time
 	</sql>
 	
+	<!-- myOrderColums -->
+	<sql id="myOrderColums">
+		o.id AS oid,o.order_no,o.user_id,o.shipping_id,o.payment,o.payment_type,o.status,o.create_time AS ocreate_time,
+		s.id AS sid,s.receiver_name,s.receiver_province,s.receiver_city,
+		oi.id AS oiid,oi.product_id,oi.product_name,oi.product_image,oi.current_unit_price,oi.quantity,oi.total_price,oi.create_time AS oicreate_time
+	</sql>
+	
 	<!--order_itemMap  -->
 	<resultMap type="OrderItem" id="orderItemMap">
 		<id column="id" property="id" />
@@ -22,6 +29,34 @@
 		<result column="total_price" property="totalPrice"/>
 		<result column="create_time" property="createTime" javaType="java.sql.Date" jdbcType="DATE" />
 		<result column="update_time" property="updateTime" javaType="java.sql.Date" jdbcType="DATE" />
+	</resultMap>
+	
+	<!-- myOrderMap -->
+	<resultMap type="order" id="myOrderMap">
+		<id column="oid" property="id" />
+		<result column="order_no" property="orderNo" />
+		<result column="user_id" property="userId" />
+		<result column="shipping_id" property="shippingId" />
+		<result column="payment" property="payment" />
+		<result column="payment_type" property="paymentType" />
+		<result column="status" property="status" />
+		<result column="ocreate_time" property="createTime" javaType="java.sql.Date" jdbcType="DATE"/>
+		<association property="shipping" javaType="Shipping">
+			<id column="sid" property="id" />
+			<result column="receiver_name" property="receiverName" />
+			<result column="receiver_province" property="receiverProvince" />
+			<result column="receiver_city" property="receiverCity" />
+		</association>
+		<collection property="orderItems" ofType="OrderItem">
+			<id column="oiid" property="id" />
+			<result column="product_id" property="productId"/>
+			<result column="product_name" property="productName"/>
+			<result column="product_image" property="productImage"/>
+			<result column="current_unit_price" property="currentUnitPrice"/>
+			<result column="quantity" property="quantity"/>
+			<result column="total_price" property="totalPrice"/>
+			<result column="oicreate_time" property="createTime" javaType="java.sql.Date" jdbcType="DATE" />
+		</collection>
 	</resultMap>
 
 	<!-- 添加订单 -->
@@ -41,4 +76,9 @@
 		select <include refid="orderItemColums"/> from order_item where order_no=#{orderNo};
 	</select>
 
+	<!-- 根据用户id查找我的订单  -->
+	<select id="findOrderByUserId" parameterType="int" resultMap="myOrderMap">
+		SELECT <include refid="myOrderColums"/> 
+		FROM orders AS o LEFT JOIN shipping AS s ON shipping_id=s.id LEFT JOIN order_item AS oi ON o.order_no=oi.order_no where o.user_id=#{id};
+	</select>
 </mapper>

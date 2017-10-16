@@ -17,7 +17,7 @@
 		<result column="receiver_mobile" property="receiverMobile" />
 		<result column="receiver_province" property="receiverProvince" />
 		<result column="receiver_city" property="receiverCity" />
-		<result column="receiver_district" property="receiverCity" />
+		<result column="receiver_district" property="receiverDistrict" />
 		<result column="receiver_address" property="receiverAddress" />
 		<result column="receiver_zip" property="receiverZip" />
 		<result column="pcreate_time" property="createTime" javaType="java.sql.Date" jdbcType="DATE" />

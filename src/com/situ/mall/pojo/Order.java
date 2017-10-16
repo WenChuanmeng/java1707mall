@@ -3,6 +3,9 @@ package com.situ.mall.pojo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
+
+import org.apache.commons.lang3.ObjectUtils.Null;
 
 import sun.security.util.BigInt;
 
@@ -30,12 +33,38 @@ public class Order implements Serializable{
 	private Date closeTime;//交易关闭时间
 	private Date createTime;//创建时间
 	private Date updateTime;//更新时间
+	//orderItem 集合
+	private List<OrderItem> orderItems;
+	//shipping
+	private Shipping shipping;
 	
 	public Order() {
 		super();
 		
 	}
 
+	public Order(Integer id, Integer userId, Long orderNo, Integer shippingId, BigDecimal payment, Integer paymentType,
+			Integer postage, Integer status, Date paymentTime, Date sendTime, Date endTime, Date closeTime,
+			Date createTime, Date updateTime, List<OrderItem> orderItems, Shipping shipping) {
+		super();
+		this.id = id;
+		this.userId = userId;
+		this.orderNo = orderNo;
+		this.shippingId = shippingId;
+		this.payment = payment;
+		this.paymentType = paymentType;
+		this.postage = postage;
+		this.status = status;
+		this.paymentTime = paymentTime;
+		this.sendTime = sendTime;
+		this.endTime = endTime;
+		this.closeTime = closeTime;
+		this.createTime = createTime;
+		this.updateTime = updateTime;
+		this.orderItems = orderItems;
+		this.shipping = shipping;
+	}
+	
 	public Order(Integer id, Integer userId, Long orderNo, Integer shippingId, BigDecimal payment, Integer paymentType,
 			Integer postage, Integer status, Date paymentTime, Date sendTime, Date endTime, Date closeTime,
 			Date createTime, Date updateTime) {
@@ -55,6 +84,8 @@ public class Order implements Serializable{
 		this.createTime = createTime;
 		this.updateTime = updateTime;
 	}
+	
+	
 
 	/**
 	 * @return the id
@@ -252,6 +283,34 @@ public class Order implements Serializable{
 		this.updateTime = updateTime;
 	}
 
+	/**
+	 * @return the orderItems
+	 */
+	public List<OrderItem> getOrderItems() {
+		return orderItems;
+	}
+
+	/**
+	 * @return the shipping
+	 */
+	public Shipping getShipping() {
+		return shipping;
+	}
+
+	/**
+	 * @param orderItems the orderItems to set
+	 */
+	public void setOrderItems(List<OrderItem> orderItems) {
+		this.orderItems = orderItems;
+	}
+
+	/**
+	 * @param shipping the shipping to set
+	 */
+	public void setShipping(Shipping shipping) {
+		this.shipping = shipping;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -260,8 +319,11 @@ public class Order implements Serializable{
 		return "Order [id=" + id + ", userId=" + userId + ", orderNo=" + orderNo + ", shippingId=" + shippingId
 				+ ", payment=" + payment + ", paymentType=" + paymentType + ", postage=" + postage + ", status="
 				+ status + ", paymentTime=" + paymentTime + ", sendTime=" + sendTime + ", endTime=" + endTime
-				+ ", closeTime=" + closeTime + ", createTime=" + createTime + ", updateTime=" + updateTime + "]";
+				+ ", closeTime=" + closeTime + ", createTime=" + createTime + ", updateTime=" + updateTime
+				+ ", orderItems=" + orderItems + ", shipping=" + shipping + "]";
 	}
+
+	
 
 	
 

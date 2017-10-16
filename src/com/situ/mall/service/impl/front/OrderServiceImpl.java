@@ -31,6 +31,11 @@ public class OrderServiceImpl implements IOrderService {
 		
 		return orderDao.findByOrderNo(orderNo);
 	}
+	@Override
+	public List<Order> findOrderByUserId(Integer id) {
+		
+		return orderDao.findOrderByUserId(id);
+	}
 
 	
 }
